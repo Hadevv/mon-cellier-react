@@ -11,7 +11,7 @@ export default function Projects() {
         async function getProjects() {
             setLoading(true);
             try {
-                const { data } = await axios.get('/projects');
+                const { data } = await axios.get('/');
                 setProjects(data);
                 setLoading(false);
             } catch (error) {
