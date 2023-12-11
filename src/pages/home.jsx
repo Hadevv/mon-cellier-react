@@ -1,5 +1,6 @@
 import AuthLayout from "@/layouts/AuthLayout";
 import SearchBar from "@/components/SearchBar";
+import WineList from "@/components/WineList";
 
 export default function Home() {
   return (
@@ -17,7 +18,11 @@ export default function Home() {
         space-y-4
         ">
         <SearchBar />
+        <div className="">
+          <WineList />
+        </div>
       </div>
+
     </AuthLayout>
   );
 }

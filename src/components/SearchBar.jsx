@@ -32,34 +32,35 @@ export default function SearchBar() {
       </Button>
       <Select>
         <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="" />
+          <SelectValue placeholder="pays" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel></SelectLabel>
-            <SelectItem value=""></SelectItem>
-            <SelectItem value=""></SelectItem>
-            <SelectItem value=""></SelectItem>
-            <SelectItem value=""></SelectItem>
-            <SelectItem value=""></SelectItem>
+            <SelectLabel>pays</SelectLabel>
+            <SelectItem value="dd1">rr</SelectItem>
+            <SelectItem value="dd2">rr</SelectItem>
+            <SelectItem value="dd3">dd</SelectItem>
+            <SelectItem value="dd4">dd</SelectItem>
+            <SelectItem value="dd5">dd</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>
       <Select>
         <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="" />
+          <SelectValue placeholder="date" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel></SelectLabel>
-            <SelectItem value=""></SelectItem>
-            <SelectItem value=""></SelectItem>
-            <SelectItem value=""></SelectItem>
-            <SelectItem value=""></SelectItem>
-            <SelectItem value=""></SelectItem>
+            <SelectLabel>date</SelectLabel>
+            <SelectItem value="dd1">ee</SelectItem>
+            <SelectItem value="dd2">ee</SelectItem>
+            <SelectItem value="dd3">ee</SelectItem>
+            <SelectItem value="dd4">ee</SelectItem>
+            <SelectItem value="dd5">ee</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>
+      <Button className="px-3 py-2">Filter</Button>
     </div>
   );
 }

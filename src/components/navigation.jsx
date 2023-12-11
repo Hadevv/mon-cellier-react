@@ -15,7 +15,7 @@ export default function Navigation() {
                             <Link to={'/'}>
                                 <PiWineFill
                                     className='text-primary'
-                                    size={40}
+                                    size={45}
                                 />
                             </Link>
                             <div className='flex items-center gap-x-4'>
