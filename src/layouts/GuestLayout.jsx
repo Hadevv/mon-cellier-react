@@ -1,4 +1,4 @@
-import { Head } from '@/components/head';
+import { Head } from '@/components/Head';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function GuestLayout({ children, title, description }) {

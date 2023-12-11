@@ -1,5 +1,5 @@
-import { Head } from '@/components/head';
-import Navigation from '@/components/navigation';
+import { Head } from '@/components/Head';
+import Navigation from '@/components/Navigation';
 
 export default function AppLayout({ children, title }) {
     return (

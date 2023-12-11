@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
-import reactLogo from '@/assets/react.svg';
+
 import { buttonVariants } from '@/components/ui/button';
-import { ThemeToggle } from './theme-toggle';
-import NavigationLink from './nav-link';
+import { ThemeToggle } from './ThemeToggle';
+import NavigationLink from './NavigationLink';
+import { PiWineFill } from "react-icons/pi";
 
 export default function Navigation() {
     return (
@@ -12,23 +13,20 @@ export default function Navigation() {
                     <div className='flex items-center justify-between'>
                         <div className='flex items-center gap-x-8'>
                             <Link to={'/'}>
-                                <img
-                                    src={reactLogo}
-                                    alt='React Logo'
-                                    className='animate-spin [animation-duration:5s]'
+                                <PiWineFill
+                                    className='text-primary'
+                                    size={40}
                                 />
                             </Link>
                             <div className='flex items-center gap-x-4'>
                                 <NavigationLink url='/' value={'home'} />
-                                <NavigationLink url='/projects' value={'projects'} />
                             </div>
                         </div>
                         <div className='flex items-center gap-x-4'>
                             <ThemeToggle />
                             <Link
                                 to={'/login'}
-                                className={buttonVariants({
-                                    variant: 'outline',
+                                className={buttonVariants({                                 
                                     size: 'default',
                                     className: 'h-[2.7rem]',
                                 })}>
@@ -37,7 +35,6 @@ export default function Navigation() {
                             <Link
                                 to={'/register'}
                                 className={buttonVariants({
-                                    variant: 'outline',
                                     size: 'default',
                                     className: 'h-[2.7rem]',
                                 })}>

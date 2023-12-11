@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import GuestLayout from '@/layouts/guest-layout';
+import GuestLayout from '@/layouts/GuestLayout';
 import { buttonVariants } from '@/components/ui/button';
 
 export default function NotFound() {

@@ -1,12 +1,12 @@
-import PrimaryLink from '@/components/primary-link';
+import PrimaryLink from '@/components/PrimaryLink';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import GuestLayout from '@/layouts/guest-layout';
+import GuestLayout from '@/layouts/GuestLayout';
 
 export default function Login() {
     return (
-        <GuestLayout title='Login' description='Welcome back, enter your credentials to continue.'>
+        <GuestLayout title='Login' description=''>
             <form>
                 <div>
                     <Label htmlFor='email'>Email</Label>

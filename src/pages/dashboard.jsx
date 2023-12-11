@@ -1,4 +1,4 @@
-import AuthLayout from '@/layouts/auth-layout';
+import AuthLayout from '@/layouts/AuthLayout';
 
 export default function Dashboard() {
     return <AuthLayout title={'Dashboard'}>Dashboard</AuthLayout>;

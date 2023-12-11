@@ -1,12 +1,12 @@
-import PrimaryLink from '@/components/primary-link';
+import PrimaryLink from '@/components/PrimaryLink';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import GuestLayout from '@/layouts/guest-layout';
+import GuestLayout from '@/layouts/GuestLayout';
 
 export default function Register() {
     return (
-        <GuestLayout title='Register' description='Hii, enter the fields below to register.'>
+        <GuestLayout title='Register' description=''>
             <form>
                 <div>
                     <Label htmlFor='name'>Name</Label>
