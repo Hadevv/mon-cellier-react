@@ -22,8 +22,7 @@ export default function WineCard({ wine }) {
           <CardDescription
             className="
         text-primary-foreground
-        "
-          >
+        ">
             {wine.year}
           </CardDescription>
           <p>{wine.price} €</p>
