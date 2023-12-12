@@ -16,13 +16,13 @@ export default function Home() {
         px-4
         py-2
         space-y-4
-        ">
+        "
+      >
         <SearchBar />
-        <div className="">
+        <div className="flex flex-row items-center justify-center w-full h-full">
           <WineList />
         </div>
       </div>
-
     </AuthLayout>
   );
 }

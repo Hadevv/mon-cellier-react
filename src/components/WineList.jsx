@@ -1,122 +1,24 @@
 import React, { useEffect } from "react";
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { useState } from "react";
+import WineCard from "./ui/WineCard";
 
-import env from "react-dotenv";
-
-console.log(env);
-
-const URL = env.API_URL;
-console.log(URL);
+const CAVISTE_API_URL =
+  "http://cruth.phpnet.org/epfc/caviste/public/index.php/api";
 
 export default function WineList() {
+  const [data, setData] = React.useState([]);
+
   useEffect(() => {
-    fetchWines();
-  }, []);
+    fetch(`${CAVISTE_API_URL}/wines`)
+      .then((response) => response.json())
+      .then((data) => setData(data));
+  }, []); // dependance vide
 
-  const fetchWines = async () => {
- 
-    const data = await fetch(URL);
-    const wines = await data.json();
-    console.log(wines);
-
-    // const wineList = wines.map((wine) => {
-    //   return (
-    //     <div key={wine.id}>
-    //       <h1>{wine.name}</h1>
-    //       <p>{wine.year}</p>
-    //       <p>{wine.country}</p>
-    //       <p>{wine.type}</p>
-    //     </div>
-    //   );
-
-  };
   return (
-    
-    <div>
-      <Table>
-        <TableBody>
-          <TableRow>
-            <TableCell>Wine 1</TableCell>
-            <TableCell>2019</TableCell>
-            <TableCell>France</TableCell>
-            <TableCell>{}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Wine 2</TableCell>
-            <TableCell>2018</TableCell>
-            <TableCell>Spain</TableCell>
-            <TableCell>White</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Wine 3</TableCell>
-            <TableCell>2017</TableCell>
-            <TableCell>Italy</TableCell>
-            <TableCell>Red</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Wine 3</TableCell>
-            <TableCell>2017</TableCell>
-            <TableCell>Italy</TableCell>
-            <TableCell>Red</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Wine 3</TableCell>
-            <TableCell>2017</TableCell>
-            <TableCell>Italy</TableCell>
-            <TableCell>Red</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Wine 3</TableCell>
-            <TableCell>2017</TableCell>
-            <TableCell>Italy</TableCell>
-            <TableCell>Red</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Wine 3</TableCell>
-            <TableCell>2017</TableCell>
-            <TableCell>Italy</TableCell>
-            <TableCell>Red</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Wine 3</TableCell>
-            <TableCell>2017</TableCell>
-            <TableCell>Italy</TableCell>
-            <TableCell>Red</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Wine 3</TableCell>
-            <TableCell>2017</TableCell>
-            <TableCell>Italy</TableCell>
-            <TableCell>Red</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Wine 3</TableCell>
-            <TableCell>2017</TableCell>
-            <TableCell>Italy</TableCell>
-            <TableCell>Red</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Wine 3</TableCell>
-            <TableCell>2017</TableCell>
-            <TableCell>Italy</TableCell>
-            <TableCell>Red</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Wine 3</TableCell>
-            <TableCell>2017</TableCell>
-            <TableCell>Italy</TableCell>
-            <TableCell>Red</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+    <div className="flex flex-col space-y-4 w-60">
+      {data.map((wine) => (
+        <WineCard key={wine.id} wine={wine} />
+      ))}
     </div>
   );
 }
