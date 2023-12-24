@@ -9,17 +9,31 @@ export default function Home() {
         className="
         flex
         flex-col
-        items-start
         justify-center
+        items-center
         w-full
         h-full
-        px-4
-        py-2
-        space-y-4
+        p-4
+        bg-gray-100
+        rounded-lg
+        shadow-lg
+        overflow-y-auto
+        overflow-x-hidden
+        
+
+
+
         "
       >
         <SearchBar />
-        <div className="flex flex-row items-center justify-center w-full h-full">
+        <div
+          className="
+        flex
+        flex-col
+        justify-center
+        items-center
+        w-full"
+        >
           <WineList />
         </div>
       </div>
