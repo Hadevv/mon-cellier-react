@@ -4,6 +4,8 @@ import { buttonVariants } from '@/components/ui/button';
 import { ThemeToggle } from './ThemeToggle';
 import NavigationLink from './NavigationLink';
 import { PiWineFill } from "react-icons/pi";
+import SearchBar from './SearchBar'; 
+
 
 export default function Navigation() {
     return (
@@ -21,6 +23,9 @@ export default function Navigation() {
                             <div className='flex items-center gap-x-4'>
                                 <NavigationLink url='/' value={'home'} />
                             </div>
+                        </div>
+                        <div className='flex justify-center items-center'>
+                            <SearchBar />
                         </div>
                         <div className='flex items-center gap-x-4'>
                             <ThemeToggle />

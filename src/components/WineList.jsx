@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import WineCard from "./ui/WineCard";
+import WineCard from "./WineCard";
 
 const CAVISTE_API_URL =
   "http://cruth.phpnet.org/epfc/caviste/public/index.php/api";

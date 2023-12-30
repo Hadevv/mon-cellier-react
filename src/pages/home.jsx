@@ -14,18 +14,12 @@ export default function Home() {
         w-full
         h-full
         p-4
-        bg-gray-100
         rounded-lg
         shadow-lg
         overflow-y-auto
         overflow-x-hidden
-        
-
-
-
         "
       >
-        <SearchBar />
         <div
           className="
         flex
