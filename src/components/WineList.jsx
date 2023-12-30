@@ -15,7 +15,15 @@ export default function WineList() {
   }, []); // dependance vide
 
   return (
-    <div className="flex flex-col space-y-4 w-60">
+    <div className="
+    grid
+    grid-cols-1
+    md:grid-cols-2
+    lg:grid-cols-3
+    xl:grid-cols-4
+    gap-4
+    mt-4
+    ">
       {data.map((wine) => (
         <WineCard key={wine.id} wine={wine} />
       ))}
