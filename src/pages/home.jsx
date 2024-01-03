@@ -1,8 +1,7 @@
 import AuthLayout from "@/layouts/AuthLayout";
-import { SearchBar } from "@/components/SearchBar";
+import { FilterSelect } from "@/components/formulaire/FilterSelect";
 import WineList from "@/components/WineList";
-
-import SearchForm from "@/components/form/SearchForm";
+import SearchForm from "@/components/formulaire/SearchForm";
 
 export default function Home() {
   return (

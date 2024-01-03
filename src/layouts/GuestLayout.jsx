@@ -1,4 +1,4 @@
-import { Head } from "@/components/header/Head";
+import { Head } from "@/components/navigation/Head";
 import {
   Card,
   CardContent,

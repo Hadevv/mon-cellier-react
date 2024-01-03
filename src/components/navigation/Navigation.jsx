@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { buttonVariants } from "@/components/ui/button";
 import { ThemeToggle } from "../theme/ThemeToggle";
 import NavigationLink from "./NavigationLink";
-import { SearchBar } from "../SearchBar";
+import { FilterSelect } from "@/components/formulaire/FilterSelect";
 
 export default function Navigation() {
   return (

@@ -1,5 +1,5 @@
-import { Head } from "@/components/header/Head";
-import Navigation from "@/components/header/Navigation";
+import { Head } from "@/components/navigation/Head";
+import Navigation from "@/components/navigation/Navigation";
 
 export default function AuthLayout({ children, title }) {
   return (
