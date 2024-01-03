@@ -4,8 +4,8 @@ export default function WineItem({ wine, onLike }) {
   const [isLiked, setIsLiked] = useState(false);
 
   const handleLikeClick = () => {
-    setIsLiked(!isLiked);
-    onLike(wine.id, !isLiked);
+    setIsLiked((prevIsLiked) => !prevIsLiked);
+    onLike(wine.id, !isLiked); 
   };
 
   return (
@@ -17,4 +17,6 @@ export default function WineItem({ wine, onLike }) {
     </li>
   );
 }
-// <div className="flex flex-col overflow-auto h-[80vh] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] gap-3">
+
+
+// ssName="flex flex-col overflow-auto h-[80vh] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] gap-3">

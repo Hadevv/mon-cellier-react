@@ -1,8 +1,5 @@
-import { useState, useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
 import AuthLayout from "@/layouts/AuthLayout";
-import { FilterSelect } from "@/components/formulaire/FilterSelect";
-import WineList from "@/components/WineList";
 import SearchForm from "@/components/formulaire/SearchForm";
 import WineItem from "@/components/WineItem";
 
@@ -14,6 +11,10 @@ export default function Home() {
   const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
+    fetchWines();
+  }, []);
+
+  const fetchWines = () => {
     fetch(API_URL + "api/wines")
       .then((res) => {
         if (!res.ok) {
@@ -25,45 +26,38 @@ export default function Home() {
         console.log(data);
         setWines(data);
 
-        //Sauvegarde de la liste des vins
         localStorage.setItem("wines", JSON.stringify(data));
       })
       .catch((error) => {
-        //console.log(error.message)
         setLoadingError(error.message);
         setWines([]);
       });
-  }, []);
+  };
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-  }
+  };
 
-  function handleChange(e) {
+  const handleChange = (e) => {
     setKeyword(e.target.value);
-  }
+  };
 
-  function handleClick(e) {
-    //Récupérer la liste copmplète des vins
+  const handleClick = () => {
     const listWines = JSON.parse(localStorage.getItem("wines"));
-
-    //Filtrer la liste au moyen du keyword
     const filteredWines = listWines.filter((wine) =>
       wine.name.includes(keyword),
     );
-    //Mettre à jour la variable de rendu wines
     setWines(filteredWines);
-  }
+  };
 
-  function handleLike(e) {
-    const wineId = e.target.value;
+  function handleLike(wineId, isLiked) {
     const options = {
       method: "PUT",
-      body: JSON.stringify({ like: true }), //Try with true or false
+      body: JSON.stringify({ like: isLiked }),
       mode: "cors",
       headers: {
         "content-type": "application/json; charset=utf-8",
-        Authorization: "Basic " + btoa("ced:123"), //Try with other credentials (login:password)
+        Authorization: "Basic " + btoa("ced:123"),
       },
     };
 
@@ -77,10 +71,10 @@ export default function Home() {
       }
     });
   }
+
   return (
     <AuthLayout title={"Home"}>
-      <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-5 ">
-        {/* Petite colonne 1 à gauche */}
+      <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-5">
         <div className="md:col-span-1">
           {loadingError && <p>{loadingError}</p>}
           <SearchForm
@@ -91,9 +85,7 @@ export default function Home() {
           />
         </div>
 
-        {/* Petite colonne 2 à gauche */}
         <div className="md:col-span-1">
-          {/* Contenu de la deuxième petite colonne */}
           <div className="flex flex-col overflow-auto h-[80vh] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] gap-3">
             <ul>
               {wines.map((wine) => (
@@ -103,11 +95,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Grande colonne à droite */}
         <div className="md:col-span-2">
           <div className="p-2 overflow-auto h-[250px] md:p-6 border-[2px] rounded-xl">
             <h2 className="text-[22px] font-bold">Recommended</h2>
-            {/* Contenu de la grande colonne */}
+            {/* Content for the large column */}
           </div>
         </div>
       </div>
