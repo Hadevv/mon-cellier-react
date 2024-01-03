@@ -11,21 +11,9 @@ import {
 export default function WineCard({ wine }) {
   return (
     <div>
-      <Card
-        className="bg-primary
-        text-primary-foreground
-        shadow
-        hover:bg-primary/90"
-      >
+      <Card className="">
         <CardHeader>
           <CardTitle>{wine.name}</CardTitle>
-          <CardDescription
-            className="
-        text-primary-foreground
-        ">
-            {wine.year}
-          </CardDescription>
-          <p>{wine.price} €</p>
         </CardHeader>
       </Card>
     </div>

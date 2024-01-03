@@ -21,6 +21,9 @@ module.exports = {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            BackgroundImage: {
+                'hero': "url('/src/assets/images/hero-vin.jpg')",
+            },
             colors: {
                 border: 'hsl(var(--border))',
                 input: 'hsl(var(--input))',

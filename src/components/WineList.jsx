@@ -12,18 +12,19 @@ export default function WineList() {
     fetch(`${CAVISTE_API_URL}/wines`)
       .then((response) => response.json())
       .then((data) => setData(data));
-  }, []); // dependance vide
+  }, []);
 
   return (
-    <div className="
-    grid
-    grid-cols-1
-    md:grid-cols-2
-    lg:grid-cols-3
-    xl:grid-cols-4
-    gap-4
-    mt-4
-    ">
+    <div
+      className="
+    flex
+    flex-col
+    overflow-auto
+    h-[80vh]
+    [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']
+    gap-3
+    "
+    >
       {data.map((wine) => (
         <WineCard key={wine.id} wine={wine} />
       ))}
