@@ -48,7 +48,8 @@ export default function Home() {
     const listWines = JSON.parse(localStorage.getItem("wines"));
 
     //Filtrer la liste au moyen du keyword
-    const filteredWines = listWines.filter((wine) => wine.name.includes(keyword),
+    const filteredWines = listWines.filter((wine) =>
+      wine.name.includes(keyword),
     );
     //Mettre à jour la variable de rendu wines
     setWines(filteredWines);
@@ -86,6 +87,7 @@ export default function Home() {
             keyword={keyword}
             onChange={handleChange}
             onSubmit={handleSubmit}
+            onClick={handleClick}
           />
         </div>
 
