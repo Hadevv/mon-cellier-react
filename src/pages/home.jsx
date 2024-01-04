@@ -1,3 +1,4 @@
+// Home.jsx
 import React, { useState, useEffect } from "react";
 import AuthLayout from "@/layouts/AuthLayout";
 import SearchForm from "@/components/formulaire/SearchForm";
@@ -35,10 +36,12 @@ export default function Home() {
       });
   };
 
-    const handleFilterChange = (key, value) => {
-    setSelectedFilters({ ...selectedFilters, [key]: value });
-    setKeyword(""); // Réinitialisez le mot-clé
-    };
+  const handleFilterChange = (key, value) => {
+    setSelectedFilters((prev) => {
+      console.log("Home - Setting Filter:", key, value);
+      return { ...prev, [key]: value };
+    });
+  };
 
   const handleSubmit = () => {
     // Filtrez les vins en fonction du mot-clé et/ou des filtres
@@ -56,21 +59,19 @@ export default function Home() {
     if (Object.keys(selectedFilters).length > 0) {
       filteredWines = filteredWines.filter((wine) =>
         Object.entries(selectedFilters).every(
-          ([key, value]) => wine[key] === value,
+          ([filterKey, filterValue]) => wine[filterKey] === filterValue,
         ),
       );
     }
-    console.log("Keyword:", keyword);
-    console.log("Selected Filters:", selectedFilters);
-    setWines(filteredWines);
-    console.log("Filtered Wines:", filteredWines);
 
-    console.log("Filtered Wines:", filteredWines);
+    setWines(filteredWines);
+    console.log("Home - Submitted with Keyword:", keyword);
+    console.log("Home - Submitted with Filters:", selectedFilters);
+    console.log("Home - Filtered Wines:", filteredWines);
   };
 
   const handleChange = (e) => {
     setKeyword(e.target.value);
-    setSelectedFilters({}); // Réinitialisez les filtres
   };
 
   function handleLike(wineId, isLiked) {

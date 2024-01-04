@@ -1,18 +1,58 @@
 import React from "react";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-
-const filterOptions = {
-  country: ["France", "Italy", "Spain", "Portugal", "Germany", "Austria", "USA", "Argentina", "Hungary"],
-  year: [
-    "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009",
-    "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020",
-    "2021", "2022", "2023"
-  ],
-};
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export function FilterSelect({ onFilterChange }) {
   const handleFilterChange = (key, value) => {
     onFilterChange(key, value);
+    console.log("FilterSelect - Filter Changed:", key, value);
+  };
+
+  const filterOptions = {
+    country: [
+      "France",
+      "Italy",
+      "Spain",
+      "Portugal",
+      "Germany",
+      "Austria",
+      "USA",
+      "Argentina",
+      "Hungary",
+    ],
+    year: [
+      "1999",
+      "2000",
+      "2001",
+      "2002",
+      "2003",
+      "2004",
+      "2005",
+      "2006",
+      "2007",
+      "2008",
+      "2009",
+      "2010",
+      "2011",
+      "2012",
+      "2013",
+      "2014",
+      "2015",
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+    ],
   };
 
   return (
@@ -40,5 +80,3 @@ export function FilterSelect({ onFilterChange }) {
     </div>
   );
 }
-
-

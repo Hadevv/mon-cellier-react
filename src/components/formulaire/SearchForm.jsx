@@ -3,11 +3,17 @@ import { FilterSelect } from "@/components/formulaire/FilterSelect";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export default function SearchForm({ keyword, onChange, onSubmit, onFilterChange, selectedFilters }) {
-
+export default function SearchForm({
+  keyword,
+  onChange,
+  onSubmit,
+  onFilterChange,
+  selectedFilters,
+}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(selectedFilters);
+    console.log("SearchForm - Submitted with Filters:", selectedFilters);
   };
 
   return (
@@ -36,5 +42,3 @@ export default function SearchForm({ keyword, onChange, onSubmit, onFilterChange
     </div>
   );
 }
-
-
