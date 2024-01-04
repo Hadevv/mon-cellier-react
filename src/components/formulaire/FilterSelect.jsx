@@ -10,8 +10,8 @@ import {
 
 export function FilterSelect({ onFilterChange }) {
   const handleFilterChange = (key, value) => {
-    onFilterChange(key, value);
     console.log("FilterSelect - Filter Changed:", key, value);
+    onFilterChange(key, value);
   };
 
   const filterOptions = {
@@ -68,8 +68,10 @@ export function FilterSelect({ onFilterChange }) {
                 <SelectItem
                   key={item}
                   value={item}
-                  onClick={() => handleFilterChange(key, item)}
-                >
+                  onClick={() => {
+                    console.log("SelectItem - Clicked:", key, item);
+                    handleFilterChange(key, item);
+                  }}>
                   {item}
                 </SelectItem>
               ))}

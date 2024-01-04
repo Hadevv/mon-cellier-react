@@ -1,4 +1,3 @@
-// Home.jsx
 import React, { useState, useEffect } from "react";
 import AuthLayout from "@/layouts/AuthLayout";
 import SearchForm from "@/components/formulaire/SearchForm";
@@ -6,6 +5,7 @@ import WineItem from "@/components/WineItem";
 
 const API_URL = "https://cruth.phpnet.org/epfc/caviste/public/index.php/";
 
+// test = "year": "2009","country": "France" | keyword = "Château" | keyword = "Château" + "year": "2009","country": "USA"
 export default function Home() {
   const [wines, setWines] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
