@@ -1,17 +1,22 @@
 import React from "react";
-
 import { FilterSelect } from "@/components/formulaire/FilterSelect";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export default function SearchForm({ keyword, onChange, onSubmit, onClick }) {
+export default function SearchForm({ keyword, onChange, onSubmit, onFilterChange, selectedFilters }) {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit(selectedFilters);
+  };
+
   return (
-    <div className="p-2 md:p-6 border-[2px] rounded-xl">
-      <form onSubmit={(e) => onSubmit(e)}>
+    <div className="p-2 md:p-6 border-[2px] rounded-xl bg-primary-foreground">
+      <form onSubmit={handleSubmit}>
         <p className="text-[20px] font-bold">caviste</p>
         {/* input */}
         <Input
-          type="text"
+          type="search"
           name="keyword"
           value={keyword}
           onChange={(e) => onChange(e)}
@@ -19,12 +24,11 @@ export default function SearchForm({ keyword, onChange, onSubmit, onClick }) {
           className="w-full mt-5 rounded-lg"
         />
         {/* Filter */}
-        <FilterSelect />
+        <FilterSelect onFilterChange={onFilterChange} />
         {/* Button */}
         <Button
           className="bg-primary w-full mt-5 color-primary rounded-lg"
           type="submit"
-          onClick={onClick}
         >
           Search
         </Button>
@@ -32,3 +36,5 @@ export default function SearchForm({ keyword, onChange, onSubmit, onClick }) {
     </div>
   );
 }
+
+

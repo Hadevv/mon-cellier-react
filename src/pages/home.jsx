@@ -9,6 +9,7 @@ export default function Home() {
   const [wines, setWines] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
   const [keyword, setKeyword] = useState("");
+  const [selectedFilters, setSelectedFilters] = useState({});
 
   useEffect(() => {
     fetchWines();
@@ -34,20 +35,42 @@ export default function Home() {
       });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const handleFilterChange = (key, value) => {
+    setSelectedFilters({ ...selectedFilters, [key]: value });
+    setKeyword(""); // Réinitialisez le mot-clé
+    };
+
+  const handleSubmit = () => {
+    // Filtrez les vins en fonction du mot-clé et/ou des filtres
+    const listWines = JSON.parse(localStorage.getItem("wines"));
+    let filteredWines = listWines;
+
+    // Filtrer en fonction du mot-clé si spécifié
+    if (keyword.trim() !== "") {
+      filteredWines = filteredWines.filter((wine) =>
+        wine.name.toLowerCase().includes(keyword.toLowerCase()),
+      );
+    }
+
+    // Filtrer en fonction des filtres sélectionnés si spécifiés
+    if (Object.keys(selectedFilters).length > 0) {
+      filteredWines = filteredWines.filter((wine) =>
+        Object.entries(selectedFilters).every(
+          ([key, value]) => wine[key] === value,
+        ),
+      );
+    }
+    console.log("Keyword:", keyword);
+    console.log("Selected Filters:", selectedFilters);
+    setWines(filteredWines);
+    console.log("Filtered Wines:", filteredWines);
+
+    console.log("Filtered Wines:", filteredWines);
   };
 
   const handleChange = (e) => {
     setKeyword(e.target.value);
-  };
-
-  const handleClick = () => {
-    const listWines = JSON.parse(localStorage.getItem("wines"));
-    const filteredWines = listWines.filter((wine) =>
-      wine.name.includes(keyword),
-    );
-    setWines(filteredWines);
+    setSelectedFilters({}); // Réinitialisez les filtres
   };
 
   function handleLike(wineId, isLiked) {
@@ -81,7 +104,8 @@ export default function Home() {
             keyword={keyword}
             onChange={handleChange}
             onSubmit={handleSubmit}
-            onClick={handleClick}
+            onFilterChange={handleFilterChange}
+            selectedFilters={selectedFilters}
           />
         </div>
 
@@ -96,7 +120,7 @@ export default function Home() {
         </div>
 
         <div className="md:col-span-2">
-          <div className="p-2 overflow-auto h-[250px] md:p-6 border-[2px] rounded-xl">
+          <div className="p-2 overflow-auto h-[250px] md:p-6 border-[2px] rounded-xl bg-primary-foreground">
             <h2 className="text-[22px] font-bold">Recommended</h2>
             {/* Content for the large column */}
           </div>
