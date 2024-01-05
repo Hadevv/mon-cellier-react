@@ -1,29 +1,85 @@
 import React from "react";
 
 export const FilterSelect = ({ onFilterChange, selectedFilters }) => {
-  const handleCountryChange = (e) => {
-    onFilterChange("country", e.target.value);
+  const handleFilterChange = (key, value) => {
+    onFilterChange(key, value);
+
+    const selectedValue = value === "All" ? "" : value;
+    onFilterChange(key, selectedValue);
   };
 
-  const handleYearChange = (e) => {
-    onFilterChange("year", e.target.value);
+  const filterOptions = {
+    country: [
+      "All",
+      "France",
+      "Italy",
+      "Spain",
+      "Portugal",
+      "Germany",
+      "Austria",
+      "USA",
+      "Argentina",
+      "Hungary",
+    ],
+    year: [
+      "All",
+      "1999",
+      "2000",
+      "2001",
+      "2002",
+      "2003",
+      "2004",
+      "2005",
+      "2006",
+      "2007",
+      "2008",
+      "2009",
+      "2010",
+      "2011",
+      "2012",
+      "2013",
+      "2014",
+      "2015",
+      "2016",
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+    ],
   };
 
   return (
-    <div>
-      <label>Country:</label>
-      <input
-        type="text"
+    <div className="flex flex-col gap-3 mt-3">
+      <label className="text-sm font-semibold">Country:</label>
+      <select
         value={selectedFilters.country}
-        onChange={handleCountryChange}
-      />
+        onChange={(e) => handleFilterChange("country", e.target.value)}
+        className="w-full h-9 px-3 border rounded-md text-sm focus:outline-none focus:border-accent"
+      >
+        <option value="All">-- All --</option>
+        {filterOptions.country.map((country) => (
+          <option key={country} value={country}>
+            {country}
+          </option>
+        ))}
+      </select>
 
-      <label>Year:</label>
-      <input
-        type="text"
+      <label className="text-sm font-semibold">Year:</label>
+      <select
         value={selectedFilters.year}
-        onChange={handleYearChange}
-      />
+        onChange={(e) => handleFilterChange("year", e.target.value)}
+        className="w-full h-9 px-3 border rounded-md text-sm focus:outline-none focus:border-accent"
+      >
+        <option value="All">-- All --</option>
+        {filterOptions.year.map((year) => (
+          <option key={year} value={year}>
+            {year}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
