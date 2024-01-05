@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { Card } from "@/components/ui/card";
 
-export default function WineItem({ wine, onLike }) {
+export default function WineItem({ wine, onLike, onClick }) {
   const [isLiked, setIsLiked] = useState(false);
 
   const handleLikeClick = () => {
@@ -13,6 +13,7 @@ export default function WineItem({ wine, onLike }) {
   return (
     <li>
       <Card
+        onClick={onClick}
         className="wine flex justify-between items-center p-3 mb-2"
         key={wine.id}
       >

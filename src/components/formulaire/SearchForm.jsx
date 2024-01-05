@@ -1,7 +1,8 @@
 import React from "react";
 import { FilterSelect } from "@/components/formulaire/FilterSelect";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
 
 export default function SearchForm({
   keyword,
@@ -30,7 +31,10 @@ export default function SearchForm({
           className="w-full mt-5 rounded-lg"
         />
         {/* Filter */}
-        <FilterSelect onFilterChange={onFilterChange} />
+        <FilterSelect 
+            onFilterChange={onFilterChange}
+            selectedFilters={selectedFilters}
+        />
         {/* Button */}
         <Button
           className="bg-primary w-full mt-5 color-primary rounded-lg"
