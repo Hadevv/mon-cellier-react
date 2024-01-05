@@ -114,7 +114,7 @@ export default function Home() {
         </div>
 
         <div className="md:col-span-2">
-          <div className="p-2 overflow-auto h-[250px] md:p-6 border-[2px] rounded-xl bg-primary-foreground">
+          <div className="h-[400px] p-2 overflow-auto md:p-6 border-[2px] rounded-xl bg-primary-foreground">
             {selectedWine ? (
               <WineDetails wine={selectedWine} />
             ) : (
