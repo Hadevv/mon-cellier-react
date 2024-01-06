@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import AuthLayout from "@/layouts/AuthLayout";
 import SearchForm from "@/components/formulaire/SearchForm";
-import WineItem from "@/components/WineItem";
-import { WineDetails } from "@/components/WineDetails";
-import { filterWines } from "@/utils/filterWines";
+import WineItem from "@/components/home/WineItem";
+import { WineDetails } from "@/components/home/WineDetails";
+import { filterWines } from "@/lib/filterWines";
 
 
 const API_URL = "https://cruth.phpnet.org/epfc/caviste/public/index.php/";
