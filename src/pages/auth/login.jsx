@@ -14,7 +14,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  // router v6
+  // router v6 : useNavigate
   const history = useNavigate();
 
   const handleSubmit = async (e) => {
