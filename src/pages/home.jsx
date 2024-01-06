@@ -4,11 +4,9 @@ import SearchForm from "@/components/formulaire/SearchForm";
 import WineItem from "@/components/home/WineItem";
 import { WineDetails } from "@/components/home/WineDetails";
 import { filterWines } from "@/lib/filterWines";
+import { getWines, handleLike } from "@/services/apiService";
 
-
-const API_URL = "https://cruth.phpnet.org/epfc/caviste/public/index.php/";
-
-export default function Home() {
+export default function Home(){
   const [wines, setWines] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
   const [keyword, setKeyword] = useState("");
@@ -24,12 +22,7 @@ export default function Home() {
 
   const fetchWines = async () => {
     try {
-      const response = await fetch(API_URL + "api/wines");
-      if (!response.ok) {
-        throw new Error("Invalid endpoint !");
-      }
-
-      const data = await response.json();
+      const data = await getWines();
       const filteredWines = filterWines(data);
       setWines(filteredWines);
     } catch (error) {
@@ -56,33 +49,15 @@ export default function Home() {
     setKeyword(e.target.value);
   };
 
-  function handleLike(wineId, isLiked) {
-    const options = {
-      method: "PUT",
-      body: JSON.stringify({ like: isLiked }),
-      mode: "cors",
-      headers: {
-        "content-type": "application/json; charset=utf-8",
-        Authorization: "Basic " + btoa("ced:123"),
-      },
-    };
-
-    const fetchURL = "api/wines/" + wineId + "/like";
-
-    fetch(API_URL + fetchURL, options)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Failed to update like status");
-      })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
+  const handleLikeClick = async (wineId, isLiked) => {
+    try {
+      await handleLike(wineId, isLiked);
+      // Mise à jour des vins après avoir géré le like
+      fetchWines();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <AuthLayout title={"Home"}>
@@ -105,7 +80,7 @@ export default function Home() {
                 <WineItem
                   key={wine.id}
                   wine={wine}
-                  onLike={handleLike}
+                  onLike={() => handleLikeClick(wine.id, !wine.like)}
                   onClick={() => handleWineClick(wine)}
                 />
               ))}
@@ -125,4 +100,6 @@ export default function Home() {
       </div>
     </AuthLayout>
   );
-}
+};
+
+
