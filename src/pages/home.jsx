@@ -4,7 +4,7 @@ import SearchForm from "@/components/formulaire/SearchForm";
 import WineItem from "@/components/home/WineItem";
 import { WineDetails } from "@/components/home/WineDetails";
 import { filterWines } from "@/lib/filterWines";
-import { getWines, handleLike } from "@/services/apiService";
+import { getWines, handleLike, getLikesCount } from "@/services/api/apiService";
 
 export default function Home(){
   const [wines, setWines] = useState([]);
@@ -91,7 +91,9 @@ export default function Home(){
         <div className="md:col-span-2">
           <div className="h-[400px] p-2 overflow-auto md:p-6 border-[2px] rounded-xl bg-primary-foreground">
             {selectedWine ? (
-              <WineDetails wine={selectedWine} />
+              <WineDetails 
+              wine={selectedWine}
+              likesCount={getLikesCount(selectedWine)}/>
             ) : (
               <h2 className="text-[22px] font-bold">Sélectionnez un Vin</h2>
             )}

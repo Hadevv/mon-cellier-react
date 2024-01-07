@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const CAVISTE_IMG_URL = "https://cruth.phpnet.org/epfc/caviste/public/pics/";
 
-export const WineDetails = ({ wine }) => {
+export const WineDetails = ({ wine, likesCount}) => {
     useEffect(() => {
         document.title = `Détails du vin ${wine.name}`;
     }, [wine]);

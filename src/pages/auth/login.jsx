@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import PrimaryLink from "@/components/navigation/PrimaryLink";
+import useAuthStore from "@/store/authStore";
 
 const API_URL = "https://cruth.phpnet.org/epfc/caviste/public/index.php/";
 
@@ -14,13 +15,14 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  // router v6 : useNavigate
-  const history = useNavigate();
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  const login = useAuthStore((state) => state.login);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Construire les informations d'identification encodées en base64
     const credentials = btoa(`${username}:${password}`);
 
     try {
@@ -39,9 +41,10 @@ export default function Login() {
       const data = await response.json();
       console.log(data);
 
-      // Rediriger vers la page d'accueil après une authentification réussie
-      // router v6
-      history("/");
+      login(username, password);
+
+      // Rediriger vers la page home
+      navigate("/"); // router v6
     } catch (error) {
       console.error("Authentication failed", error);
       setError("Authentication failed");
