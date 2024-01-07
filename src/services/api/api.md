@@ -1,0 +1,18 @@
+-  v GET	    /api/wines/10	Retrouve le vin dont l'id == 10 
+-  x GET	    /api/wines?key=country&val=France&sort=year	Filtre les vins de France triés par année
+-  v GET	    /api/wines/search?keyword=Chateau	Recherche les vins dont le nom contient ‘Chateau’
+-  x GET	    /api/wines/10/comments	Retrouve les commentaires du vin 10
+-  x GET	    /api/wines/countries	Retrouve les différents pays
+-  v GET	    /api/wines/10/likes-count	Retrouve le nombre de likes du vin 10
+-  x GET	    /api/users/5/likes/wines	Retrouve les vins préférés de l’utilisateur 5
+-  v PUT	    /api/wines/10/like { "like" : true|false } Authorization Ajoute ou retire le vin 10 parmi ses préférés
+-  x POST	    /api/wines/10/comments { "content" : "some content" } Authorization	Ajoute un commentaire pour le vin 10
+-  x PUT	    /api/wines/10/comments/3 { "content" : "some new content" } Authorization	Modifie le commentaire 3 du vin 10
+-  x DELETE	    /api/wines/10/comments/3 Authorization	Supprime le commentaire 3 du vin 10
+-  x POST	    /api/wines/10/pictures FormData Authorization	Ajoute une image pour le vin 10
+-  x DELETE	    /api/wines/10/pictures/2 Authorization	Supprime l’image 2 du vin 10
+-  x GET	    /api/wines/10/pictures Authorization	Récupère les images supplémentaires pour le vin 10 (de 0 à 3 images - stockées dans le dossier uploads)
+- x GET	    /api/users	Retrouve l'id et le login de tous les utilisateurs
+- v GET	    /api/users/authenticate Authorization	Authentifie un utilisateur
+- x GET	    /api/wines/10/notes Authorization	Récupère la note du vin 10 pour le user connecté
+- x PUT	    /api/wines/10/notes { "note" : "some new content" } Authorization	Ajoute ou modifie la note du vin 10 pour le user connecté
