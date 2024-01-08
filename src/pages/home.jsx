@@ -3,7 +3,7 @@ import AuthLayout from "@/layouts/AuthLayout";
 import SearchForm from "@/components/formulaire/SearchForm";
 import WineItem from "@/components/home/WineItem";
 import  WineDetails from "@/components/home/WineDetails";
-import { filterWines } from "@/lib/filterWines";
+import { filterWines } from "@/utils/filterWines";
 import { getWines, handleLike } from "@/services/api/apiService";
 
 export default function Home(){

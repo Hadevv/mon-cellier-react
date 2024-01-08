@@ -217,7 +217,7 @@ export const getUsers = async () => {
   }
 };
 
-// Crud likes
+// Crud Likes
 
 export const handleLike = async (wineId, isLiked) => {
   const credentials = useAuthStore((state) => state.credentials);
@@ -271,3 +271,5 @@ export const getLikesCount = async (wineId) => {
     throw new Error(error.message);
   }
 };
+
+// crud Images
