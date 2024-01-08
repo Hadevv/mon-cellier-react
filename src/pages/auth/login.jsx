@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// router v6
+// router V6
 import { useNavigate } from "react-router-dom";
 import GuestLayout from "@/layouts/GuestLayout";
 import { Button } from "@/components/ui/button";
@@ -7,8 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import PrimaryLink from "@/components/navigation/PrimaryLink";
 import useAuthStore from "@/store/authStore";
-
-const API_URL = "https://cruth.phpnet.org/epfc/caviste/public/index.php/";
+import { authenticateUser } from "@/services/api/apiService";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -23,31 +22,17 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const credentials = btoa(`${username}:${password}`);
-
     try {
-      const response = await fetch(`${API_URL}api/users/authenticate`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          Authorization: `Basic ${credentials}`,
-        },
-      });
+      const data = await authenticateUser(username, password);
 
-      if (!response.ok) {
-        throw new Error("Authentication failed");
+      if (data.success) {
+        login(username, password);
+        navigate("/");
+      } else {
+        setError("Authentication failed. Please check your credentials.");
       }
-
-      const data = await response.json();
-      console.log(data);
-
-      login(username, password);
-
-      // Rediriger vers la page home
-      navigate("/"); // router v6
     } catch (error) {
-      console.error("Authentication failed", error);
-      setError("Authentication failed");
+      setError(error.message);
     }
   };
 

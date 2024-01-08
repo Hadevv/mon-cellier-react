@@ -213,6 +213,36 @@ export const getUsers = async () => {
   }
 };
 
+const handleApiResponse = async (response) => {
+  if (!response.ok) {
+    throw new Error("Request failed");
+  }
+
+  const data = await response.json();
+  return data;
+};
+
+export const authenticateUser = async (username, password) => {
+  const credentials = btoa(`${username}:${password}`);
+
+  try {
+    const response = await fetch(`${API_URL}api/users/authenticate`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        Authorization: `Basic ${credentials}`,
+      },
+    });
+
+    const data = await handleApiResponse(response);
+
+    return data;
+  } catch (error) {
+    console.error("Authentication failed", error);
+    throw new Error("Authentication failed. Please try again later.");
+  }
+};
+
 // Crud Likes
 
 export const handleLike = async (wineId, isLiked) => {
@@ -269,3 +299,5 @@ export const getLikesCount = async (wineId) => {
 };
 
 // crud Images
+
+
