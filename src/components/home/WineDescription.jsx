@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export default function WineDescription({ wineDescription }) {
-console.log(wineDescription)
+  console.log(wineDescription);
   const maxLength = 200;
   const [showFullDescription, setShowFullDescription] = useState(false);
 
@@ -13,7 +13,6 @@ console.log(wineDescription)
     <div className="p-4 bg-gray-100 border rounded">
       <h2 className="text-xl font-bold mb-4">Description</h2>
       <p>
-        Description:{" "}
         {showFullDescription
           ? wineDescription
           : wineDescription.slice(0, maxLength) + "..."}
@@ -24,8 +23,11 @@ console.log(wineDescription)
         )}
       </p>
 
-      {/* Contenu de la description */}
-      {/* Boutons CRUD pour la description */}
+      {showFullDescription && (
+        <button className="text-blue-500" onClick={toggleDescription}>
+          Réduire
+        </button>
+      )}
     </div>
   );
 }

@@ -12,6 +12,7 @@ const getAuthorizationHeader = (credentials) => {
       Authorization: `Basic ${credentials}`,
     };
   }
+  console.log(credentials);
 
   return {};
 };
@@ -49,18 +50,18 @@ export const getWineComments = async (wineId) => {
   }
 };
 
-export const addWineComment = async (wineId, content) => {
-  const credentials = useAuthStore((state) => state.credentials);
+export const addWineComment = async (wineId, content, credentials ) => {
 
   const options = {
     method: "POST",
     body: JSON.stringify({ content }),
     mode: "cors",
     headers: {
-      "Content-Type": "application/json; charset=utf-8",
       ...getAuthorizationHeader(credentials),
     },
   };
+
+  console.log(options);
 
   const fetchURL = `api/wines/${wineId}/comments`;
 
@@ -77,8 +78,7 @@ export const addWineComment = async (wineId, content) => {
   }
 };
 
-export const editWineComment = async (wineId, commentId, content) => {
-  const credentials = useAuthStore((state) => state.credentials);
+export const editWineComment = async (wineId, commentId, content, credentials ) => {
 
   const options = {
     method: "PUT",
@@ -105,8 +105,7 @@ export const editWineComment = async (wineId, commentId, content) => {
   }
 };
 
-export const deleteWineComment = async (wineId, commentId) => {
-  const credentials = useAuthStore((state) => state.credentials);
+export const deleteWineComment = async (wineId, commentId, credentials) => {
 
   const options = {
     method: "DELETE",
@@ -136,8 +135,7 @@ export const deleteWineComment = async (wineId, commentId) => {
 
 // Crud notes
 
-export const updateWineNote = async (wineId, note) => {
-  const credentials = useAuthStore((state) => state.credentials);
+export const updateWineNote = async (wineId, note, credentials ) => {
 
   const options = {
     method: "PUT",
@@ -164,8 +162,7 @@ export const updateWineNote = async (wineId, note) => {
   }
 };
 
-export const getWineNote = async (wineId) => {
-  const credentials = useAuthStore((state) => state.credentials);
+export const getWineNote = async (wineId, credentials) => {
 
   const options = {
     method: "GET",
@@ -201,7 +198,6 @@ export const getUsers = async () => {
       "Content-Type": "application/json; charset=utf-8",
     },
   };
-
   const fetchURL = `api/users`;
 
   try {

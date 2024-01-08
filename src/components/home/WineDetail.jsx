@@ -40,7 +40,7 @@ export default function WineDetail({ wine }) {
           <img
             src={`${CAVISTE_IMG_URL}${wine.picture}`}
             alt={`Photo du vin ${wine.name}`}
-            style={{ maxWidth: "100%", maxHeight: "200px" }}
+            style={{ maxWidth: "100%", maxHeight: "250px" }}
             className="mix-blend-multiply"
           />
         )}
