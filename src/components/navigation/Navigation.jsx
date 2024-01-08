@@ -4,7 +4,7 @@ import useAuthStore from "@/store/authStore";
 import { buttonVariants } from "@/components/ui/button";
 import { ThemeToggle } from "../theme/ThemeToggle";
 import NavigationLink from "./NavigationLink";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Avatar, AvatarFallback } from "../ui/avatar";
 
 export default function Navigation() {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
@@ -53,7 +53,6 @@ export default function Navigation() {
                   Login
                 </Link>
               )}
-              {/* Ajoutez le lien Register ici si nécessaire */}
             </div>
           </div>
         </nav>

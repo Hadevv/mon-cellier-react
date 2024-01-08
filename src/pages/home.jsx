@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AuthLayout from "@/layouts/AuthLayout";
 import SearchForm from "@/components/formulaire/SearchForm";
 import WineItem from "@/components/home/WineItem";
-import  WineDetails from "@/components/home/WineDetails";
+import  WineDetail from "@/components/home/WineDetail";
 import { filterWines } from "@/utils/filterWines";
 import { getWines, handleLike } from "@/services/api/apiService";
 
@@ -89,9 +89,9 @@ export default function Home(){
         </div>
 
         <div className="md:col-span-2">
-          <div className="h-[400px] p-2 overflow-auto md:p-6 border-[2px] rounded-xl bg-primary-foreground">
+          <div className="h-[100%] p-2 overflow-auto md:p-6 border-[2px] rounded-xl bg-primary-foreground">
             {selectedWine ? (
-              <WineDetails
+              <WineDetail
               wine={selectedWine}
               />
             ) : (
