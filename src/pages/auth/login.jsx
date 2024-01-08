@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import PrimaryLink from "@/components/navigation/PrimaryLink";
 import useAuthStore from "@/store/authStore";
-import { authenticateUser } from "@/services/api/apiService";
+import { authenticateUser } from "@/services/api/userService";
 
 export default function Login() {
   const [username, setUsername] = useState("");

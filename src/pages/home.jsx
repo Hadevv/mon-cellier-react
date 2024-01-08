@@ -4,7 +4,8 @@ import SearchForm from "@/components/formulaire/SearchForm";
 import WineItem from "@/components/home/WineItem";
 import  WineDetail from "@/components/home/WineDetail";
 import { filterWines } from "@/utils/filterWines";
-import { getWines, handleLike } from "@/services/api/apiService";
+import { getWines } from "@/services/api/wineService";
+import { handleLike } from "@/services/api/likeService";
 
 export default function Home(){
   const [wines, setWines] = useState([]);

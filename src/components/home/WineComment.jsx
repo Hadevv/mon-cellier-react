@@ -5,7 +5,7 @@ import {
   addWineComment,
   editWineComment,
   deleteWineComment,
-} from "@/services/api/apiService";
+} from "@/services/api/commentService.js";
 
 import CommentList from "./CommentList";
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useLikeStore from "@/store/likeStore";
-import { getLikesCount } from "@/services/api/apiService";
+import { getLikesCount } from "@/services/api/likeService";
 import WineComment from "./WineComment";
 import WineNote from "./WineNote";
 import WineDescription from "./WineDescription";
