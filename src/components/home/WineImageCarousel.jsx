@@ -19,7 +19,7 @@ export default function WineImageCarousel({ wineId, credentials }) {
 
   useEffect(() => {
     loadImages();
-  }, []);
+  }, [wineId]);
 
   const loadImages = async () => {
     try {
@@ -44,7 +44,7 @@ export default function WineImageCarousel({ wineId, credentials }) {
   const handleUploadImage = async (file) => {
     try {
       await addWinePicture(wineId, file, credentials);
-      loadImages(); // Recharge les images après l'ajout
+      loadImages();
     } catch (error) {
       console.error(`Error uploading image:`, error.message);
     }
@@ -67,7 +67,15 @@ export default function WineImageCarousel({ wineId, credentials }) {
                 <Card>
                   <CardContent className="flex aspect-square items-center justify-center p-6">
                     <img src={image.imageUrl} alt={`Wine ${wineId}`} />
-                    <button onClick={() => handleDeleteImage(image.id)}>
+                    <button className="
+                      absolute
+                      bottom-0
+                      bg-white
+                      text-red-500
+                      hover:bg-red-500
+                      hover:text-white
+                      font-bold
+                    " onClick={() => handleDeleteImage(image.id)}>
                       Supprimer
                     </button>
                   </CardContent>
@@ -79,6 +87,9 @@ export default function WineImageCarousel({ wineId, credentials }) {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
+      <div className="mt-4">
+        <ModalUpload onUpload={handleUploadImage} />
+      </div>
     </div>
   );
 }

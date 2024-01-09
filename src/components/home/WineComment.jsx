@@ -7,7 +7,7 @@ import {
   deleteWineComment,
 } from "@/services/api/commentService.js";
 
-import CommentList from "./CommentList";
+import CommentList from "./WineCommentList";
 
 const WineComment = ({ wineId }) => {
   const [comments, setComments] = useState([]);
@@ -17,7 +17,6 @@ const WineComment = ({ wineId }) => {
   const credentials = useAuthStore((state) => state.credentials);
 
   useEffect(() => {
-    // Charge les commentaires du vin lors du montage du composant
     loadComments();
   }, []);
 
@@ -41,7 +40,7 @@ const WineComment = ({ wineId }) => {
     try {
       await addWineComment(wineId, newComment, credentials);
       setNewComment("");
-      loadComments(); // Recharge les commentaires après l'ajout
+      loadComments();
     } catch (error) {
       console.error("Error adding comment:", error.message);
     }
@@ -52,7 +51,6 @@ const WineComment = ({ wineId }) => {
       console  .log(
         "L'utilisateur n'est pas connecté. Redirigez-le vers la page de connexion.",
       );
-      // Vous pouvez également afficher un message à l'utilisateur
       return;
     }
 
@@ -71,13 +69,12 @@ const WineComment = ({ wineId }) => {
       console.log(
         "L'utilisateur n'est pas connecté. Redirigez-le vers la page de connexion.",
       );
-      // Vous pouvez également afficher un message à l'utilisateur
       return;
     }
 
     try {
       await deleteWineComment(wineId, commentId);
-      loadComments(); // Recharge les commentaires après la suppression
+      loadComments();
     } catch (error) {
       console.error("Error deleting comment:", error.message);
     }
