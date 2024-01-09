@@ -35,23 +35,18 @@ export default function CommentList({
             <div className="flex items-center justify-between">
               <span className="flex-1">{comment.content}</span>
               <div className="space-x-2">
-                {editCommentId !== null ? (
-                  // Afficher les boutons Modifier/Supprimer uniquement si un commentaire est en cours d'édition
-                  <>
-                    <button
-                      onClick={() => setEditCommentId(comment.id)}
-                      className="bg-yellow-500 text-white p-2 rounded"
-                    >
-                      Modifier
-                    </button>
-                    <button
-                      onClick={() => handleDeleteComment(comment.id)}
-                      className="bg-red-500 text-white p-2 rounded"
-                    >
-                      Supprimer
-                    </button>
-                  </>
-                ) : null}
+                <button
+                  onClick={() => setEditedComment(comment.content) || setEditCommentId(comment.id)}
+                  className="bg-yellow-500 text-white p-2 rounded"
+                >
+                  Modifier
+                </button>
+                <button
+                  onClick={() => handleDeleteComment(comment.id)}
+                  className="bg-red-500 text-white p-2 rounded"
+                >
+                  Supprimer
+                </button>
               </div>
             </div>
           )}
@@ -60,4 +55,5 @@ export default function CommentList({
     </ul>
   );
 }
+
 
