@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useLikeStore from "@/store/likeStore";
+import WineImageCarousel from "./WineImageCarousel";
+import useAuthStore from "@/store/authStore";
 import { getLikesCount } from "@/services/api/likeService";
 import WineComment from "./WineComment";
 import WineNote from "./WineNote";
@@ -10,6 +12,8 @@ const CAVISTE_IMG_URL = "https://cruth.phpnet.org/epfc/caviste/public/pics/";
 export default function WineDetail({ wine }) {
   const [selectedTab, setSelectedTab] = useState("description");
   const likesStore = useLikeStore();
+  const credentials = useAuthStore((state) => state.credentials);
+  
 
   useEffect(() => {
     document.title = `Détails du vin ${wine.name}`;
@@ -81,6 +85,15 @@ export default function WineDetail({ wine }) {
           {selectedTab === "comments" && <WineComment wineId={wine.id} />}
           {selectedTab === "notes" && <WineNote wineId={wine.id} />}
         </div>
+      </div>
+      <div className="
+        flex flex-col
+        justify-center items-center
+        bg-white border rounded shadow-md
+        p-8 mt-8
+        h-40
+      ">
+        <WineImageCarousel wineId={wine.id} credentials={credentials} />
       </div>
     </div>
   );
