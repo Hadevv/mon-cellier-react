@@ -30,6 +30,10 @@ export default function ModalUpload({ onUpload }) {
         <Button variant="outline">Upload</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
+      <DialogTrigger asChild>
+        <Button variant="outline">Upload</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Upload</DialogTitle>
         </DialogHeader>
