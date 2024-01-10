@@ -6,6 +6,7 @@ import { getLikesCount } from "@/services/api/likeService";
 import WineComment from "./WineComment";
 import WineNote from "./WineNote";
 import WineDescription from "./WineDescription";
+import ModalUpload from "./ModalUpload";
 
 const CAVISTE_IMG_URL = "https://cruth.phpnet.org/epfc/caviste/public/pics/";
 
@@ -85,6 +86,7 @@ export default function WineDetail({ wine }) {
           {selectedTab === "comments" && <WineComment wineId={wine.id} />}
           {selectedTab === "notes" && <WineNote wineId={wine.id} />}
         </div>
+
       </div>
       <div className="
         flex flex-col
@@ -93,6 +95,7 @@ export default function WineDetail({ wine }) {
         p-8 mt-8
         h-40
       ">
+
         <WineImageCarousel wineId={wine.id} credentials={credentials} />
       </div>
     </div>
