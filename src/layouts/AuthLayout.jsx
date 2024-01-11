@@ -6,7 +6,6 @@ export default function AuthLayout({ children, title }) {
     <>
       <Head title={title} />
       <Navigation />
-      <div className="mt-[80px]" />
       {/* image de fond */}
       <main className="h-full bg-[url('/src/assets/images/vin-vin.webp')] bg-cover bg-no-repeat bg-center">
         {children}

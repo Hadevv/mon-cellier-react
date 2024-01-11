@@ -1,31 +1,23 @@
 import React, { useState } from "react";
-// router V6
 import { useNavigate } from "react-router-dom";
-// layouts
 import GuestLayout from "@/layouts/GuestLayout";
-// components
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import PrimaryLink from "@/components/navigation/PrimaryLink";
-// store
 import useAuthStore from "@/store/authStore";
-// services
 import { authenticateUser } from "@/services/api/userService";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-
-  // const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const login = useAuthStore((state) => state.login);
-  // router V6 navigate
   const navigate = useNavigate();
 
-  // handleSubmit recupere les données de l'utilisateur
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const username = e.target.username.value;
+    const password = e.target.password.value;
+
     try {
       const data = await authenticateUser(username, password);
 
@@ -51,8 +43,6 @@ export default function Login() {
             type="text"
             autoFocus
             autoComplete="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
             className="mt-1 block w-full"
             required
           />
@@ -65,8 +55,6 @@ export default function Login() {
             name="password"
             type="password"
             autoComplete="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             className="mt-1 block w-full"
             required
           />
@@ -75,9 +63,9 @@ export default function Login() {
         {error && <p className="text-red-500 mt-2">{error}</p>}
 
         <div className="mt-4 flex items-center justify-between">
-          <PrimaryLink to={"/"} value={"home"} />
+          <PrimaryLink to={"/"} value={"Home"} />
           <div>
-            <PrimaryLink to={"/register"} value={"register?"} />
+            <PrimaryLink to={"/register"} value={"Register"} />
             <Button type="submit" className="ml-4">
               Log in
             </Button>
@@ -87,3 +75,4 @@ export default function Login() {
     </GuestLayout>
   );
 }
+
