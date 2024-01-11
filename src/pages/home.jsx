@@ -44,7 +44,8 @@ export default function Home() {
   // handleFilterChange recupere les filtres selectionnés
   const handleFilterChange = (key, value) => {
     // select est un objet qui contient les filtres selectionnés
-    setSelectedFilters((select) => ({ ...select, [key]: value }));
+    // prev est une convention pour recuperer l'ancien state
+    setSelectedFilters((prev) => ({ ...prev, [key]: value }));
     fetchWines();
   };
   // handleSubmit recupere l'array des vins filtrés de utils/filterWines

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-// components
+import React, { useEffect, useState, useCallback } from "react";
 import ModalUpload from "@/components/home/ModalUpload";
 import {
   Carousel,
@@ -9,44 +8,47 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
-// services
 import {
   getWinePictures,
   addWinePicture,
   deleteWinePicture,
 } from "@/services/api/pictureService";
+import useAuthStore from "@/store/authStore";
 
-// WineImageCarousel affiche les images d'un vin
-export default function WineImageCarousel({ wineId, credentials }) {
+const WineImageCarousel = ({ wineId }) => {
+  const credentials = useAuthStore((state) => state.credentials);
   const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadImages();
-  }, [wineId]);
-
-  // loadImage charge les images du vin
-  const loadImages = async () => {
+  const loadImages = useCallback(async () => {
     try {
+      setLoading(true);
       const fetchedImages = await getWinePictures(wineId, credentials);
       setImages(fetchedImages);
     } catch (error) {
       console.error("Error loading images:", error.message);
+    } finally {
+      setLoading(false);
     }
-  };
+  }, [wineId, credentials]);
 
-  // handeleDeleteImage supprime une image
+  useEffect(() => {
+    if (credentials) {
+      loadImages();
+    }
+  }, [credentials, loadImages]);
+
   const handleDeleteImage = async (imageId) => {
     try {
       await deleteWinePicture(wineId, imageId, credentials);
-      setImages((selectImages) =>
-        selectImages.filter((image) => image.id !== imageId),
+      setImages((prevImages) =>
+        prevImages.filter((image) => image.id !== imageId),
       );
     } catch (error) {
       console.error(`Error deleting image ${imageId}:`, error.message);
     }
   };
 
-  // handleUploadImage ajoute une image
   const handleUploadImage = async (file) => {
     try {
       await addWinePicture(wineId, file, credentials);
@@ -56,49 +58,55 @@ export default function WineImageCarousel({ wineId, credentials }) {
     }
   };
 
-  console.log("images", images);
-
-  images.map((image) => console.log(image.imageUrl));
-
   return (
     <div>
-      <Carousel className="w-full max-w-sm">
-        <CarouselContent className="-mx-1">
-          {images.map((image) => (
-            <CarouselItem
-              key={image.id}
-              className="pl-1 md:basis-1/2 lg:basis-1/3"
-            >
-              <div className="p-1">
-                <Card>
-                  <CardContent className="flex aspect-square items-center justify-center p-6">
-                    <img src={image.imageUrl} alt={`Wine ${wineId}`} />
-                    <button
-                      className="
-                      absolute
-                      bottom-0
-                      bg-white
-                      text-red-500
-                      hover:bg-red-500
-                      hover:text-white
-                      font-bold
-                    "
-                      onClick={() => handleDeleteImage(image.id)}
-                    >
-                      Supprimer
-                    </button>
-                  </CardContent>
-                </Card>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
+      {loading ? (
+        <p>Loading images...</p>
+      ) : (
+        <Carousel className="w-full max-w-sm">
+          <CarouselContent className="-mx-1">
+            {images.map((image) => (
+              <CarouselItem
+                key={image.id}
+                className="pl-1 md:basis-1/2 lg:basis-1/3"
+              >
+                <div className="p-1">
+                  <Card>
+                    <CardContent className="flex aspect-square items-center justify-center p-6">
+                      <img
+                        src={image.imageUrl}
+                        alt={`Wine ${wineId}`}
+                        loading="lazy"
+                      />
+                      <button
+                        className="
+                          absolute
+                          bottom-0
+                          bg-white
+                          text-red-500
+                          hover:bg-red-500
+                          hover:text-white
+                          font-bold
+                        "
+                        onClick={() => handleDeleteImage(image.id)}
+                      >
+                        Supprimer
+                      </button>
+                    </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      )}
       <div className="mt-4">
         <ModalUpload onUpload={handleUploadImage} />
       </div>
     </div>
   );
-}
+};
+
+export default WineImageCarousel;

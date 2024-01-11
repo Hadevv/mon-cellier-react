@@ -1,4 +1,3 @@
-// useLikeStore.js
 import create from 'zustand';
 
 const useLikeStore = create((set) => ({

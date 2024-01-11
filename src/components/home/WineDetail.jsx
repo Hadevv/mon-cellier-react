@@ -51,6 +51,7 @@ export default function WineDetail({ wine }) {
             alt={`Photo du vin ${wine.name}`}
             style={{ maxWidth: "100%", maxHeight: "250px" }}
             className="mix-blend-multiply"
+            loading="lazy"
           />
         )}
       </div>
@@ -102,7 +103,7 @@ export default function WineDetail({ wine }) {
         h-40
       "
       >
-        <WineImageCarousel wineId={wine.id} credentials={credentials} />
+        <WineImageCarousel wineId={wine.id} />
       </div>
     </div>
   );
