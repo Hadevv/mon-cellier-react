@@ -3,6 +3,7 @@ import { getAuthorizationHeader } from '@/utils/apiServiceUtils';
 const API_URL = 'https://cruth.phpnet.org/epfc/caviste/public/index.php/api/wines';
 const UPLOADS_URL = 'https://cruth.phpnet.org/epfc/caviste/public/uploads';
 
+// getWinePictures récupérer les images d'un vin
 export const getWinePictures = async (wineId, credentials) => {
   try {
     const response = await fetch(`${API_URL}/${wineId}/pictures`, {
@@ -29,6 +30,7 @@ export const getWinePictures = async (wineId, credentials) => {
   }
 };
 
+// addWinePicture ajoute une image à un vin
 export const addWinePicture = async (wineId, file, credentials) => {
   try {
     const formData = new FormData();
@@ -47,6 +49,7 @@ export const addWinePicture = async (wineId, file, credentials) => {
     }
 
     const data = await response.json();
+    // On ajoute l'URL de l'image au résultat
     return {
       ...data,
       imageUrl: `${API_URL}/${data.filename}`,
@@ -57,6 +60,7 @@ export const addWinePicture = async (wineId, file, credentials) => {
   }
 };
 
+// deleteWinePicture supprime une image d'un vin
 export const deleteWinePicture = async (wineId, pictureId, credentials) => {
   try {
     const response = await fetch(`${API_URL}/${wineId}/pictures/${pictureId}`, {

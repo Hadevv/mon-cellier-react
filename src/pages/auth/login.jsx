@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 // router V6
 import { useNavigate } from "react-router-dom";
+// layouts
 import GuestLayout from "@/layouts/GuestLayout";
+// components
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import PrimaryLink from "@/components/navigation/PrimaryLink";
+// store
 import useAuthStore from "@/store/authStore";
+// services
 import { authenticateUser } from "@/services/api/userService";
 
 export default function Login() {
@@ -14,14 +18,14 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+  // const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const login = useAuthStore((state) => state.login);
-
+  // router V6 navigate
   const navigate = useNavigate();
 
+  // handleSubmit recupere les données de l'utilisateur
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const data = await authenticateUser(username, password);
 

@@ -3,12 +3,14 @@ import {
   handleApiResponse,
 } from "@/utils/apiServiceUtils";
 
-// Store Zustand authStore.js
+// useAuthStore est un hook qui permet d'accéder au store de l'authentification
 import useAuthStore from "@/store/authStore";
+// useLikeStore est un hook qui permet d'accéder au store des likes
 import useLikeStore from "@/store/likeStore";
 
 const API_URL = "https://cruth.phpnet.org/epfc/caviste/public/index.php/";
 
+// handleLike gère le like d'un vin
 export const handleLike = async (wineId, isLiked) => {
   const credentials = useAuthStore((state) => state.credentials);
 
@@ -37,6 +39,7 @@ export const handleLike = async (wineId, isLiked) => {
   }
 };
 
+// getLikesCount récupère le nombre de likes d'un vin
 export const getLikesCount = async (wineId) => {
   try {
     const response = await fetch(API_URL + `api/wines/${wineId}/likes-count`);
@@ -46,11 +49,12 @@ export const getLikesCount = async (wineId) => {
 
     const data = await response.json();
 
+    // Si la réponse est valide, on met à jour le store
     if (data && data.total) {
-      // Extraction du nombre du champ total et conversion en nombre
+      // On convertit le nombre de likes en nombre entier
       const likesCount = parseInt(data.total, 10);
 
-      // Met à jour le store avec le nombre de likes
+      // On met à jour le store
       useLikeStore.getState().setLikesCount(likesCount);
 
       return likesCount;

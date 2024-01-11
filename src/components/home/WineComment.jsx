@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from "react";
+// store Zustand
 import useAuthStore from "@/store/authStore";
+// services
 import {
   getWineComments,
   addWineComment,
   editWineComment,
-  deleteWineComment, 
+  deleteWineComment,
 } from "@/services/api/commentService.js";
-
+// components
 import CommentList from "./WineCommentList";
 
-const WineComment = ({ wineId }) => {
+export default function WineComment({ wineId }) {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
   const [editCommentId, setEditCommentId] = useState(null);
   const [editedComment, setEditedComment] = useState("");
+
   const credentials = useAuthStore((state) => state.credentials);
 
   useEffect(() => {
     loadComments();
   }, []);
 
+  // loadComments récupére les commentaires d'un vin
   const loadComments = async () => {
     try {
       const fetchedComments = await getWineComments(wineId);
@@ -29,9 +33,12 @@ const WineComment = ({ wineId }) => {
     }
   };
 
+  // handleAddComment gére l'ajout d'un commentaire
   const handleAddComment = async () => {
     if (!credentials) {
-      console.log("L'utilisateur n'est pas connecté. Redirigez-le vers la page de connexion.");
+      console.log(
+        "L'utilisateur n'est pas connecté. Redirigez-le vers la page de connexion.",
+      );
       return;
     }
 
@@ -46,9 +53,10 @@ const WineComment = ({ wineId }) => {
     }
   };
 
+  // handleEditComment gére la modification d'un commentaire
   const handleEditComment = async (commentId) => {
     if (!credentials) {
-      console  .log(
+      console.log(
         "L'utilisateur n'est pas connecté. Redirigez-le vers la page de connexion.",
       );
       return;
@@ -64,6 +72,7 @@ const WineComment = ({ wineId }) => {
     }
   };
 
+  // handleDeleteComment gére la suppression d'un commentaire
   const handleDeleteComment = async (commentId) => {
     if (!credentials) {
       console.log(
@@ -117,6 +126,4 @@ const WineComment = ({ wineId }) => {
       </div>
     </div>
   );
-};
-
-export default WineComment;
+}

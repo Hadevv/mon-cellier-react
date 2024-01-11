@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
+// layouts
 import AuthLayout from "@/layouts/AuthLayout";
+// components
 import SearchForm from "@/components/formulaire/SearchForm";
 import WineItem from "@/components/home/WineItem";
-import  WineDetail from "@/components/home/WineDetail";
+import WineDetail from "@/components/home/WineDetail";
+// utils
 import { filterWines } from "@/utils/filterWines";
+// services
 import { getWines } from "@/services/api/wineService";
 import { handleLike } from "@/services/api/likeService";
 
-export default function Home(){
+export default function Home() {
   const [wines, setWines] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
   const [keyword, setKeyword] = useState("");
@@ -21,6 +25,7 @@ export default function Home(){
     fetchWines();
   }, [selectedFilters]);
 
+  // fetchWines recupere les vins et les filtres
   const fetchWines = async () => {
     try {
       const data = await getWines();
@@ -32,28 +37,31 @@ export default function Home(){
     }
   };
 
+  // handleWineClick recupere le vin selectionné
   const handleWineClick = (wine) => {
     setSelectedWine(wine);
   };
-
+  // handleFilterChange recupere les filtres selectionnés
   const handleFilterChange = (key, value) => {
-    setSelectedFilters((prev) => ({ ...prev, [key]: value }));
+    // select est un objet qui contient les filtres selectionnés
+    setSelectedFilters((select) => ({ ...select, [key]: value }));
     fetchWines();
   };
-
+  // handleSubmit recupere l'array des vins filtrés de utils/filterWines
   const handleSubmit = () => {
     const filteredWines = filterWines(wines, selectedFilters, keyword);
     setWines(filteredWines);
   };
 
+  // handleChange recupere la valeur de l'input
   const handleChange = (e) => {
     setKeyword(e.target.value);
   };
 
+  // handleLikeClick declenche le like du vin selectionné
   const handleLikeClick = async (wineId, isLiked) => {
     try {
       await handleLike(wineId, isLiked);
-      // Mise à jour des vins après avoir géré le like
       fetchWines();
     } catch (error) {
       console.error(error);
@@ -92,9 +100,7 @@ export default function Home(){
         <div className="md:col-span-2">
           <div className="h-[100%] p-2 overflow-auto md:p-6 border-[2px] rounded-xl bg-primary-foreground">
             {selectedWine ? (
-              <WineDetail
-              wine={selectedWine}
-              />
+              <WineDetail wine={selectedWine} />
             ) : (
               <h2 className="text-[22px] font-bold">Sélectionnez un Vin</h2>
             )}
@@ -103,6 +109,4 @@ export default function Home(){
       </div>
     </AuthLayout>
   );
-};
-
-
+}

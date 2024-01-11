@@ -1,9 +1,11 @@
 import React from "react";
 
 export const FilterSelect = ({ onFilterChange, selectedFilters }) => {
+  // handleFilterChange gère le changement de filtre
   const handleFilterChange = (key, value) => {
     onFilterChange(key, value);
 
+    // selectedValue est la valeur sélectionnée ou une chaîne vide si "All" est sélectionné
     const selectedValue = value === "All" ? "" : value;
     onFilterChange(key, selectedValue);
   };

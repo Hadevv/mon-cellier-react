@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from "react";
+// store Zustand
 import useLikeStore from "@/store/likeStore";
-import WineImageCarousel from "./WineImageCarousel";
 import useAuthStore from "@/store/authStore";
-import { getLikesCount } from "@/services/api/likeService";
+// components
+import WineImageCarousel from "./WineImageCarousel";
 import WineComment from "./WineComment";
 import WineNote from "./WineNote";
 import WineDescription from "./WineDescription";
-import ModalUpload from "./ModalUpload";
+// services
+import { getLikesCount } from "@/services/api/likeService";
 
 const CAVISTE_IMG_URL = "https://cruth.phpnet.org/epfc/caviste/public/pics/";
 
 export default function WineDetail({ wine }) {
   const [selectedTab, setSelectedTab] = useState("description");
+
   const likesStore = useLikeStore();
   const credentials = useAuthStore((state) => state.credentials);
-  
 
   useEffect(() => {
     document.title = `Détails du vin ${wine.name}`;
 
-    // Récupérer le nombre de likes du vin et mettre à jour le store
+    // getLikesCount récupére le nombre de likes d'un vin et le stocke dans le store
     getLikesCount(wine.id)
       .then((count) => likesStore.setLikesCount(count))
       .catch((error) => console.error("Failed to get likes count", error));
   }, [wine]);
 
+  // handleTabClick gére le changement d'onglet (description, commentaires, notes)
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
   };
@@ -82,20 +85,22 @@ export default function WineDetail({ wine }) {
           </button>
         </div>
         <div>
-          {selectedTab === "description" && <WineDescription wineDescription={wine.description} />}
+          {selectedTab === "description" && (
+            <WineDescription wineDescription={wine.description} />
+          )}
           {selectedTab === "comments" && <WineComment wineId={wine.id} />}
           {selectedTab === "notes" && <WineNote wineId={wine.id} />}
         </div>
-
       </div>
-      <div className="
+      <div
+        className="
         flex flex-col
         justify-center items-center
         bg-white border rounded shadow-md
         p-8 mt-8
         h-40
-      ">
-
+      "
+      >
         <WineImageCarousel wineId={wine.id} credentials={credentials} />
       </div>
     </div>

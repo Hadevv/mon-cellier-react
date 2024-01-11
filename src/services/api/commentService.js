@@ -5,6 +5,7 @@ import {
 
 const API_URL = "https://cruth.phpnet.org/epfc/caviste/public/index.php/";
 
+// getWineComments récupérer les commentaires d'un vin
 export const getWineComments = async (wineId) => {
   try {
     const response = await fetch(API_URL + `api/wines/${wineId}/comments`);
@@ -19,6 +20,7 @@ export const getWineComments = async (wineId) => {
   }
 };
 
+// addWineComment ajouter un commentaire à un vin
 export const addWineComment = async (wineId, content, credentials) => {
   const options = {
     method: "POST",
@@ -46,6 +48,7 @@ export const addWineComment = async (wineId, content, credentials) => {
   }
 };
 
+// editWineComment modifier un commentaire d'un vin
 export const editWineComment = async (
   wineId,
   commentId,
@@ -77,6 +80,7 @@ export const editWineComment = async (
   }
 };
 
+// deleteWineComment supprimer un commentaire d'un vin
 export const deleteWineComment = async (wineId, commentId, credentials) => {
   const options = {
     method: "DELETE",

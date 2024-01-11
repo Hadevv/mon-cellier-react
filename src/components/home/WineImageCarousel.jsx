@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+// components
 import ModalUpload from "@/components/home/ModalUpload";
 import {
   Carousel,
@@ -8,12 +9,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
+// services
 import {
   getWinePictures,
   addWinePicture,
   deleteWinePicture,
 } from "@/services/api/pictureService";
 
+// WineImageCarousel affiche les images d'un vin
 export default function WineImageCarousel({ wineId, credentials }) {
   const [images, setImages] = useState([]);
 
@@ -21,6 +24,7 @@ export default function WineImageCarousel({ wineId, credentials }) {
     loadImages();
   }, [wineId]);
 
+  // loadImage charge les images du vin
   const loadImages = async () => {
     try {
       const fetchedImages = await getWinePictures(wineId, credentials);
@@ -30,17 +34,19 @@ export default function WineImageCarousel({ wineId, credentials }) {
     }
   };
 
+  // handeleDeleteImage supprime une image
   const handleDeleteImage = async (imageId) => {
     try {
       await deleteWinePicture(wineId, imageId, credentials);
-      setImages((prevImages) =>
-        prevImages.filter((image) => image.id !== imageId),
+      setImages((selectImages) =>
+        selectImages.filter((image) => image.id !== imageId),
       );
     } catch (error) {
       console.error(`Error deleting image ${imageId}:`, error.message);
     }
   };
 
+  // handleUploadImage ajoute une image
   const handleUploadImage = async (file) => {
     try {
       await addWinePicture(wineId, file, credentials);
@@ -67,7 +73,8 @@ export default function WineImageCarousel({ wineId, credentials }) {
                 <Card>
                   <CardContent className="flex aspect-square items-center justify-center p-6">
                     <img src={image.imageUrl} alt={`Wine ${wineId}`} />
-                    <button className="
+                    <button
+                      className="
                       absolute
                       bottom-0
                       bg-white
@@ -75,7 +82,9 @@ export default function WineImageCarousel({ wineId, credentials }) {
                       hover:bg-red-500
                       hover:text-white
                       font-bold
-                    " onClick={() => handleDeleteImage(image.id)}>
+                    "
+                      onClick={() => handleDeleteImage(image.id)}
+                    >
                       Supprimer
                     </button>
                   </CardContent>

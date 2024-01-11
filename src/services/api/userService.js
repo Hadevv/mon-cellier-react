@@ -5,6 +5,7 @@ import {
 
 const API_URL = "https://cruth.phpnet.org/epfc/caviste/public/index.php/";
 
+// getUsers récupére les utilisateurs de l'API
 export const getUsers = async () => {
   const options = {
     method: "GET",
@@ -28,6 +29,7 @@ export const getUsers = async () => {
   }
 };
 
+// authenticateUser authentifie un utilisateur
 export const authenticateUser = async (username, password) => {
   const credentials = btoa(`${username}:${password}`);
 

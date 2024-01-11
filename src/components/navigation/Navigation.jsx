@@ -1,10 +1,14 @@
 import React from "react";
+// router v6
 import { Link } from "react-router-dom";
+// store zustand
 import useAuthStore from "@/store/authStore";
+// components
 import { buttonVariants } from "@/components/ui/button";
-import { ThemeToggle } from "../theme/ThemeToggle";
-import NavigationLink from "./NavigationLink";
 import { Avatar, AvatarFallback } from "../ui/avatar";
+import NavigationLink from "./NavigationLink";
+// theme
+import { ThemeToggle } from "../theme/ThemeToggle";
 
 export default function Navigation() {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);

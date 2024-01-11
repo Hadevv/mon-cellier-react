@@ -1,7 +1,9 @@
+// components
 import PrimaryLink from "@/components/navigation/PrimaryLink";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+// layouts
 import GuestLayout from "@/layouts/GuestLayout";
 
 export default function Register() {

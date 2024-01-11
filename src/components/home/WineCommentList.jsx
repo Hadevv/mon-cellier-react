@@ -26,7 +26,7 @@ export default function CommentList({
               <button
                 onClick={() => handleEditComment(comment.id)}
                 className="bg-blue-500 text-white p-2 rounded"
-                disabled={!editedComment.trim()} // Disable button if editedComment is empty
+                disabled={!editedComment.trim()} // désactive le bouton si le commentaire est vide
               >
                 Enregistrer
               </button>
@@ -36,7 +36,10 @@ export default function CommentList({
               <span className="flex-1">{comment.content}</span>
               <div className="space-x-2">
                 <button
-                  onClick={() => setEditedComment(comment.content) || setEditCommentId(comment.id)}
+                  onClick={() =>
+                    setEditedComment(comment.content) ||
+                    setEditCommentId(comment.id)
+                  }
                   className="bg-yellow-500 text-white p-2 rounded"
                 >
                   Modifier
@@ -55,5 +58,3 @@ export default function CommentList({
     </ul>
   );
 }
-
-

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+//components
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -14,10 +15,12 @@ import { Label } from "@/components/ui/label";
 export default function ModalUpload({ onUpload }) {
   const [selectedFile, setSelectedFile] = useState(null);
 
+  // handleFileChange gére le changement de fichier
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
   };
 
+  // handleSubmit gére la soumission du formulaire
   const handleSubmit = () => {
     if (selectedFile) {
       onUpload(selectedFile);
@@ -26,10 +29,6 @@ export default function ModalUpload({ onUpload }) {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">Upload</Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
       <DialogTrigger asChild>
         <Button variant="outline">Upload</Button>
       </DialogTrigger>
@@ -51,11 +50,7 @@ export default function ModalUpload({ onUpload }) {
               text-gray-400
               text-center
               cursor-pointer
-              disabled:cursor-not-allowed
-
-
-
-            "
+              disabled:cursor-not-allowed"
               type="file"
               onChange={handleFileChange}
             />

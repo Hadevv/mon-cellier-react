@@ -5,6 +5,7 @@ import {
   
 const API_URL = "https://cruth.phpnet.org/epfc/caviste/public/index.php/";
 
+// updateWineNote met à jour la note d'un vin
 export const updateWineNote = async (wineId, note, credentials) => {
   const options = {
     method: "PUT",
@@ -31,6 +32,7 @@ export const updateWineNote = async (wineId, note, credentials) => {
   }
 };
 
+// getWineNote récupère la note d'un vin
 export const getWineNote = async (wineId, credentials) => {
   const options = {
     method: "GET",

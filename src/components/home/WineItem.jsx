@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-
+// components
 import { Card } from "@/components/ui/card";
 
 export default function WineItem({ wine, onLike, onClick }) {
   const [isLiked, setIsLiked] = useState(false);
 
+  // handleLikeClick gère le clic sur le bouton de like
   const handleLikeClick = () => {
     setIsLiked((prevIsLiked) => !prevIsLiked);
     onLike(wine.id, !isLiked);
