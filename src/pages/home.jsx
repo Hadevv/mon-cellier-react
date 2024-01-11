@@ -70,8 +70,8 @@ export default function Home() {
 
   return (
     <AuthLayout title={"Home"}>
-      <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-5">
-        <div className="md:col-span-1">
+      <div className="p-6 grid grid-cols-1 md:grid-cols-9 gap-5">
+        <div className="md:col-span-2">
           {loadingError && <p>{loadingError}</p>}
           <SearchForm
             keyword={keyword}
@@ -82,7 +82,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="md:col-span-1">
+        <div className="md:col-span-3">
           <div className="flex flex-col overflow-auto h-[80vh] [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] gap-3">
             <ul>
               {wines.map((wine) => (
@@ -97,7 +97,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="md:col-span-2">
+        <div className="md:col-span-4">
           <div className="h-[100%] p-2 overflow-auto md:p-6 border-[2px] rounded-xl bg-primary-foreground">
             {selectedWine ? (
               <WineDetail wine={selectedWine} />

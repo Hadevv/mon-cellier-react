@@ -1,14 +1,31 @@
-import React, { useState } from "react";
-// components
+import React, { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
+import useLikeStore from "@/store/likeStore";
 
-export default function WineItem({ wine, onLike, onClick }) {
+export default function WineItem({ wine, onClick }) {
   const [isLiked, setIsLiked] = useState(false);
+  const { addLike, removeLike, userLikes, initLikesFromLocalStorage } = useLikeStore();
 
-  // handleLikeClick gère le clic sur le bouton de like
+  useEffect(() => {
+    // Initialiser les likes depuis le localStorage
+    initLikesFromLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    // Vérifier si le vin est déjà aimé par l'utilisateur
+    setIsLiked(userLikes.includes(wine.id));
+  }, [userLikes, wine.id]);
+
   const handleLikeClick = () => {
+    // Inverser l'état du like
     setIsLiked((prevIsLiked) => !prevIsLiked);
-    onLike(wine.id, !isLiked);
+
+    // Ajouter ou supprimer le like dans le store en fonction de l'état précédent
+    if (!isLiked) {
+      addLike(wine.id);
+    } else {
+      removeLike(wine.id);
+    }
   };
 
   return (
@@ -26,3 +43,4 @@ export default function WineItem({ wine, onLike, onClick }) {
     </li>
   );
 }
+
