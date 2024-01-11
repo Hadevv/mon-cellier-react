@@ -43,6 +43,7 @@ export default function WineDetail({ wine }) {
           <p>Cépage: {wine.grapes}</p>
           <p>Couleur: {wine.color}</p>
           <p>Likes: {likesStore.likesCount}</p>
+          <p>ID: {wine.id}</p>
         </div>
         {wine.picture && (
           <img

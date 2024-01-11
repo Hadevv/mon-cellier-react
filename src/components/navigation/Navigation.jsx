@@ -1,20 +1,18 @@
 import React from "react";
 // router v6
 import { Link } from "react-router-dom";
-// store zustand
+// store Zustand
 import useAuthStore from "@/store/authStore";
 // components
 import { buttonVariants } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import NavigationLink from "./NavigationLink";
-// theme
 import { ThemeToggle } from "../theme/ThemeToggle";
 
 export default function Navigation() {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const abbreviation = useAuthStore((state) => state.abbreviation);
-
-  console.log("Auth", isAuthenticated, abbreviation);
+  const logout = useAuthStore((state) => state.logout);
 
   return (
     <header className="relative z-[50] hidden md:block">
@@ -39,7 +37,7 @@ export default function Navigation() {
                 <Link
                   to={"/"}
                   onClick={() => {
-                    useAuthStore.logout();
+                    logout(); // Utilisez la fonction logout du store
                   }}
                   className={buttonVariants({
                     size: "default",
