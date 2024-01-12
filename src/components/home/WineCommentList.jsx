@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function CommentList({
   comments,
@@ -16,40 +18,36 @@ export default function CommentList({
       {comments.map((comment) => (
         <li key={comment.id} className="mb-4">
           {editCommentId === comment.id ? (
-            <div className="flex items-center space-x-2">
-              <input
+            <div className="">
+              <Input
                 type="text"
                 value={editedComment}
                 onChange={(e) => setEditedComment(e.target.value)}
-                className="border p-2 flex-1"
               />
-              <button
+              <Button
                 onClick={() => handleEditComment(comment.id)}
-                className="bg-blue-500 text-white p-2 rounded"
                 disabled={!editedComment.trim()} // désactive le bouton si le commentaire est vide
               >
                 Enregistrer
-              </button>
+              </Button>
             </div>
           ) : (
             <div className="flex items-center justify-between">
               <span className="flex-1">{comment.content}</span>
               <div className="space-x-2">
-                <button
+                <Button
                   onClick={() =>
                     setEditedComment(comment.content) ||
                     setEditCommentId(comment.id)
                   }
-                  className="bg-yellow-500 text-white p-2 rounded"
                 >
                   Modifier
-                </button>
-                <button
+                </Button>
+                <Button variant="destructive"
                   onClick={() => handleDeleteComment(comment.id)}
-                  className="bg-red-500 text-white p-2 rounded"
                 >
                   Supprimer
-                </button>
+                </Button>
               </div>
             </div>
           )}

@@ -59,7 +59,7 @@ export const FilterSelect = ({ onFilterChange, selectedFilters }) => {
       <select
         value={selectedFilters.country}
         onChange={(e) => handleFilterChange("country", e.target.value)}
-        className="w-full h-9 px-3 border rounded-md text-sm focus:outline-none focus:border-accent"
+        className="w-full h-9 px-3 bg-primary-foreground border rounded-md text-sm focus:outline-none focus:border-accent"
       >
         <option value="All">-- All --</option>
         {filterOptions.country.map((country) => (
@@ -73,7 +73,7 @@ export const FilterSelect = ({ onFilterChange, selectedFilters }) => {
       <select
         value={selectedFilters.year}
         onChange={(e) => handleFilterChange("year", e.target.value)}
-        className="w-full h-9 px-3 border rounded-md text-sm focus:outline-none focus:border-accent"
+        className="w-full h-9 px-3 bg-primary-foreground border rounded-md text-sm focus:outline-none focus:border-accent"
       >
         <option value="All">-- All --</option>
         {filterOptions.year.map((year) => (

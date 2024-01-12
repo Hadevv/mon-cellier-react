@@ -10,6 +10,8 @@ import {
 } from "@/services/api/commentService.js";
 // components
 import CommentList from "./WineCommentList";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function WineComment({ wineId }) {
   const [comments, setComments] = useState([]);
@@ -90,7 +92,7 @@ export default function WineComment({ wineId }) {
   };
 
   return (
-    <div className="p-4 bg-gray-100 border rounded">
+    <div className="p-4 border rounded">
       <h2 className="text-xl font-bold mb-4">Commentaires</h2>
       <CommentList
         comments={comments}
@@ -104,7 +106,7 @@ export default function WineComment({ wineId }) {
         handleDeleteComment={handleDeleteComment}
       />
       <div className="flex items-center space-x-2">
-        <input
+        <Input
           type="text"
           value={editCommentId !== null ? editedComment : newComment}
           onChange={(e) =>
@@ -113,16 +115,14 @@ export default function WineComment({ wineId }) {
               : setNewComment(e.target.value)
           }
           placeholder="Ajouter un commentaire..."
-          className="border p-2 flex-1"
         />
-        <button
+        <Button
           onClick={
             editCommentId !== null ? handleEditComment : handleAddComment
           }
-          className="bg-green-500 text-white p-2 rounded"
         >
           {editCommentId !== null ? "Enregistrer" : "Ajouter"}
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -7,6 +7,9 @@ import WineImageCarousel from "./WineImageCarousel";
 import WineComment from "./WineComment";
 import WineNote from "./WineNote";
 import WineDescription from "./WineDescription";
+import { Button, buttonVariants } from "@/components/ui/button";
+
+
 // services
 import { getLikesCount } from "@/services/api/likeService";
 
@@ -55,53 +58,49 @@ export default function WineDetail({ wine }) {
           />
         )}
       </div>
-      <div className="p-8 bg-white border rounded shadow-md">
-        <div className="flex mb-4">
-          <button
-            className={`mr-4 px-4 py-2 rounded ${
-              selectedTab === "description"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-300"
-            }`}
-            onClick={() => handleTabClick("description")}
-          >
-            Description
-          </button>
-          <button
-            className={`mr-4 px-4 py-2 rounded ${
-              selectedTab === "comments"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-300"
-            }`}
-            onClick={() => handleTabClick("comments")}
-          >
-            Commentaires
-          </button>
-          <button
-            className={`mr-4 px-4 py-2 rounded ${
-              selectedTab === "notes" ? "bg-blue-500 text-white" : "bg-gray-300"
-            }`}
-            onClick={() => handleTabClick("notes")}
-          >
-            Notes Personnelles
-          </button>
-        </div>
-        <div>
-          {selectedTab === "description" && (
-            <WineDescription wineDescription={wine.description} />
-          )}
-          {selectedTab === "comments" && <WineComment wineId={wine.id} />}
-          {selectedTab === "notes" && <WineNote wineId={wine.id} />}
-        </div>
+      <div className="flex mb-4">
+        <Button
+          className={`mr-4 px-4 py-2 rounded-md ${
+            selectedTab === "description" ? "" : ""
+              
+          }`}
+          onClick={() => handleTabClick("description")}
+        >
+          Description
+        </Button>
+        <Button
+          className={`mr-4 px-4 py-2 rounded-md ${
+            selectedTab === "comments"
+              ? ""
+              : ""
+          }`}
+          onClick={() => handleTabClick("comments")}
+        >
+          Commentaires
+        </Button>
+        <Button
+          className={`mr-4 px-4 py-2 rounded-md ${
+            selectedTab === "notes" ? "" : ""
+          }`}
+          onClick={() => handleTabClick("notes")}
+        >
+          Notes Personnelles
+        </Button>
+      </div>
+      <div>
+        {selectedTab === "description" && (
+          <WineDescription wineDescription={wine.description} />
+        )}
+        {selectedTab === "comments" && <WineComment wineId={wine.id} />}
+        {selectedTab === "notes" && <WineNote wineId={wine.id} />}
       </div>
       <div
         className="
         flex flex-col
         justify-center items-center
-        bg-white border rounded shadow-md
+        primary-foreground border rounded shadow-md
         p-8 mt-8
-        h-40
-      "
+        h-40"
       >
         <WineImageCarousel wineId={wine.id} />
       </div>
