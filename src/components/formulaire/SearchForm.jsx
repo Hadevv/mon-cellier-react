@@ -13,7 +13,6 @@ export default function SearchForm({
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(selectedFilters);
-    console.log("SearchForm - Submitted with Filters:", selectedFilters);
   };
 
   return (
