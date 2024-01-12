@@ -8,7 +8,7 @@ import WineComment from "./WineComment";
 import WineNote from "./WineNote";
 import WineDescription from "./WineDescription";
 import { Button, buttonVariants } from "@/components/ui/button";
-
+import WineCountry from "./WineCountry";
 
 // services
 import { getLikesCount } from "@/services/api/likeService";
@@ -41,7 +41,7 @@ export default function WineDetail({ wine }) {
         <div className="">
           <h2 className="text-[22px] font-bold">Détails du Vin</h2>
           <p>Nom: {wine.name}</p>
-          <p>Pays: {wine.country}</p>
+          <WineCountry wine={wine} />
           <p>Année: {wine.year}</p>
           <p>Cépage: {wine.grapes}</p>
           <p>Couleur: {wine.color}</p>
@@ -62,7 +62,6 @@ export default function WineDetail({ wine }) {
         <Button
           className={`mr-4 px-4 py-2 rounded-md ${
             selectedTab === "description" ? "" : ""
-              
           }`}
           onClick={() => handleTabClick("description")}
         >
@@ -70,9 +69,7 @@ export default function WineDetail({ wine }) {
         </Button>
         <Button
           className={`mr-4 px-4 py-2 rounded-md ${
-            selectedTab === "comments"
-              ? ""
-              : ""
+            selectedTab === "comments" ? "" : ""
           }`}
           onClick={() => handleTabClick("comments")}
         >

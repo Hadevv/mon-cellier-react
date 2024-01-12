@@ -59,7 +59,7 @@ export default function Navigation() {
             <img
               src={logo}
               alt="Caviste logo"
-              className="w-10 ml-6 -rotate-90
+              className="w-9 ml-6 -rotate-90
               transform
               transition-all
               duration-500
