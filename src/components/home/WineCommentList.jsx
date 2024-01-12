@@ -14,7 +14,7 @@ export default function CommentList({
   handleDeleteComment,
 }) {
   return (
-    <ul className="list-disc pl-4 overflow-auto h-[60px]">
+    <ul className="list-disc pl-4 overflow-auto h-[110px]">
       {comments.map((comment) => (
         <li key={comment.id} className="mb-4">
           {editCommentId === comment.id ? (

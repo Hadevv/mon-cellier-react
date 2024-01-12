@@ -92,7 +92,7 @@ export default function WineComment({ wineId }) {
   };
 
   return (
-    <div className="p-4 border rounded">
+    <div className="p-4 border rounded h-full">
       <h2 className="text-xl font-bold mb-4">Commentaires</h2>
       <CommentList
         comments={comments}

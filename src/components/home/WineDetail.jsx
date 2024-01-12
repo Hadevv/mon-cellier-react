@@ -1,44 +1,42 @@
 import React, { useEffect, useState } from "react";
-// store Zustand
 import useLikeStore from "@/store/likeStore";
 import useAuthStore from "@/store/authStore";
-// components
 import WineImageCarousel from "./WineImageCarousel";
 import WineComment from "./WineComment";
 import WineNote from "./WineNote";
 import WineDescription from "./WineDescription";
 import { Button, buttonVariants } from "@/components/ui/button";
 import WineCountry from "./WineCountry";
-
-// services
 import { getLikesCount } from "@/services/api/likeService";
 
 const CAVISTE_IMG_URL = "https://cruth.phpnet.org/epfc/caviste/public/pics/";
 
-export default function WineDetail({ wine }) {
+const WineDetail = ({ wine }) => {
   const [selectedTab, setSelectedTab] = useState("description");
-
   const likesStore = useLikeStore();
-  const credentials = useAuthStore((state) => state.credentials);
 
   useEffect(() => {
     document.title = `Détails du vin ${wine.name}`;
-
-    // getLikesCount récupére le nombre de likes d'un vin et le stocke dans le store
-    getLikesCount(wine.id)
-      .then((count) => likesStore.setLikesCount(count))
-      .catch((error) => console.error("Failed to get likes count", error));
+    getLikesCountAndUpdateStore(wine.id);
   }, [wine]);
 
-  // handleTabClick gére le changement d'onglet (description, commentaires, notes)
+  const getLikesCountAndUpdateStore = async (wineId) => {
+    try {
+      const count = await getLikesCount(wineId);
+      likesStore.setLikesCount(count);
+    } catch (error) {
+      console.error("Failed to get likes count", error);
+    }
+  };
+
   const handleTabClick = (tab) => {
     setSelectedTab(tab);
   };
 
   return (
-    <div className="flex flex-col justify-around">
-      <div className="flex justify-around mb-5">
-        <div className="">
+    <div className="flex flex-col h-full">
+      <div className="h-[60%] flex justify-around">
+        <div className="flex flex-col">
           <h2 className="text-[22px] font-bold">Détails du Vin</h2>
           <p>Nom: {wine.name}</p>
           <WineCountry wine={wine} />
@@ -58,7 +56,10 @@ export default function WineDetail({ wine }) {
           />
         )}
       </div>
-      <div className="flex mb-4">
+      <div className="h-[40%] flex flex-col justify-center items-center">
+        <WineImageCarousel wineId={wine.id} />
+      </div>
+      <div className="h-[40%] flex justify-center">
         <Button
           className={`mr-4 px-4 py-2 rounded-md ${
             selectedTab === "description" ? "" : ""
@@ -91,16 +92,9 @@ export default function WineDetail({ wine }) {
         {selectedTab === "comments" && <WineComment wineId={wine.id} />}
         {selectedTab === "notes" && <WineNote wineId={wine.id} />}
       </div>
-      <div
-        className="
-        flex flex-col
-        justify-center items-center
-        primary-foreground border rounded shadow-md
-        p-8 mt-8
-        h-40"
-      >
-        <WineImageCarousel wineId={wine.id} />
-      </div>
     </div>
   );
-}
+};
+
+export default WineDetail;
+

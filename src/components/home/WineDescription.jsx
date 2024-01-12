@@ -10,7 +10,7 @@ export default function WineDescription({ wineDescription }) {
   };
 
   return (
-    <div className="p-4 border rounded">
+    <div className="p-4 border rounded h-full">
       <h2 className="text-xl font-bold mb-4">Description</h2>
       <p>
         {/* affiche les 200 premiers caractères de la description + "..." */}

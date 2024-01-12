@@ -64,11 +64,11 @@ const WineImageCarousel = ({ wineId }) => {
         <p>Loading images...</p>
       ) : (
         <Carousel className="w-full max-w-sm">
-          <CarouselContent className="-mx-1">
+          <CarouselContent className=" h-full -mx-1">
             {images.map((image) => (
               <CarouselItem
                 key={image.id}
-                className="pl-1 md:basis-1/2 lg:basis-1/3"
+                className="pl-1 basis-1/2 md:basis-1/3"
               >
                 <div className="p-1">
                   <Card>
@@ -102,9 +102,11 @@ const WineImageCarousel = ({ wineId }) => {
           <CarouselNext />
         </Carousel>
       )}
-      <div className="mt-4">
-        <ModalUpload onUpload={handleUploadImage} />
-      </div>
+      <ModalUpload
+        onUpload={handleUploadImage}
+        className="w-full max-w-sm"
+        buttonClassName="w-full"
+      />
     </div>
   );
 };
