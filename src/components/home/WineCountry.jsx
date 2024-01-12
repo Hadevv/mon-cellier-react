@@ -8,8 +8,8 @@ export default function WineCountry({ wine }) {
   console.log(`Country Code: ${countryCode}`);
 
   return (
-    <div className="flex items-center justify-around ml-0">
-      Pays: {wine.country}
+    <div className="flex items-center">
+      <p className="mr-3">Pays: {wine.country}</p>
       <CircleFlag countryCode={countryCode} height="30" width="30" />
     </div>
   );
