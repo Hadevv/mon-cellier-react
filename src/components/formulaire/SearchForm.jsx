@@ -10,6 +10,7 @@ export default function SearchForm({
   onFilterChange,
   selectedFilters,
 }) {
+  // handleSubmit gère la soumission du formulaire
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(selectedFilters);

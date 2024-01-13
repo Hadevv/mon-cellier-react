@@ -10,6 +10,7 @@ export default function Dashboard() {
     fetchUsers();
   }, []);
 
+  // fetchUsers récupérer la liste des utilisateurs
   const fetchUsers = async () => {
     try {
       const userList = await getUsers();
@@ -25,14 +26,14 @@ export default function Dashboard() {
   return (
     <AuthLayout title={"Tableau de bord"}>
       <div className="mx-4 mt-8">
-        <h2 className="text-2xl font-bold mb-4 text-center">Tableau de bord</h2>
+        <h2 className="text-2xl font-bold mb-4 text-center">dashboard</h2>
 
         {error && (
-          <p className="text-red-500 mb-4 text-center">Erreur : {error}</p>
+          <p className="text-red-500 mb-4 text-center">{error}</p>
         )}
 
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Liste des utilisateurs */}
+          {/* liste des utilisateurs */}
           {users.map((user) => (
             <li key={user.id} className="bg-white p-6 rounded-md shadow-md">
               <strong className="text-lg font-bold mb-2 block">ID:</strong>

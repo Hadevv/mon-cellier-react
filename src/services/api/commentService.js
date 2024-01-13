@@ -5,12 +5,12 @@ import {
 
 const API_URL = "https://cruth.phpnet.org/epfc/caviste/public/index.php/";
 
-// getWineComments récupérer les commentaires d'un vin
+// getWineComments récupère les commentaires d'un vin
 export const getWineComments = async (wineId) => {
   try {
     const response = await fetch(API_URL + `api/wines/${wineId}/comments`);
     if (!response.ok) {
-      throw new Error("Failed to retrieve comments for wine " + wineId);
+      throw new Error("Échec de la récupération des commentaires pour le vin " + wineId);
     }
 
     const data = await response.json();
@@ -20,7 +20,7 @@ export const getWineComments = async (wineId) => {
   }
 };
 
-// addWineComment ajouter un commentaire à un vin
+// addWineComment ajoute un commentaire à un vin
 export const addWineComment = async (wineId, content, credentials) => {
   const options = {
     method: "POST",
@@ -38,7 +38,7 @@ export const addWineComment = async (wineId, content, credentials) => {
   try {
     const response = await fetch(API_URL + fetchURL, options);
     if (!response.ok) {
-      throw new Error("Failed to add comment for wine " + wineId);
+      throw new Error("Échec de l'ajout du commentaire pour le vin " + wineId);
     }
 
     const data = await response.json();
@@ -48,7 +48,7 @@ export const addWineComment = async (wineId, content, credentials) => {
   }
 };
 
-// editWineComment modifier un commentaire d'un vin
+// editWineComment modifie un commentaire d'un vin
 export const editWineComment = async (
   wineId,
   commentId,
@@ -70,7 +70,7 @@ export const editWineComment = async (
   try {
     const response = await fetch(API_URL + fetchURL, options);
     if (!response.ok) {
-      throw new Error(`Failed to edit comment ${commentId} for wine ${wineId}`);
+      throw new Error(`Échec de la modification du commentaire ${commentId} pour le vin ${wineId}`);
     }
 
     const data = await response.json();
@@ -80,7 +80,7 @@ export const editWineComment = async (
   }
 };
 
-// deleteWineComment supprimer un commentaire d'un vin
+// deleteWineComment supprime un commentaire d'un vin
 export const deleteWineComment = async (wineId, commentId, credentials) => {
   const options = {
     method: "DELETE",
@@ -97,7 +97,7 @@ export const deleteWineComment = async (wineId, commentId, credentials) => {
     const response = await fetch(API_URL + fetchURL, options);
     if (!response.ok) {
       throw new Error(
-        `Failed to delete comment ${commentId} for wine ${wineId}`,
+        `Échec de la suppression du commentaire ${commentId} pour le vin ${wineId}`,
       );
     }
 
@@ -107,3 +107,4 @@ export const deleteWineComment = async (wineId, commentId, credentials) => {
     throw new Error(error.message);
   }
 };
+

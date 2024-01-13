@@ -31,36 +31,35 @@ export default function WineComment({ wineId }) {
       const fetchedComments = await getWineComments(wineId);
       setComments(fetchedComments);
     } catch (error) {
-      console.error("Error loading comments:", error.message);
+      console.error(
+        "Erreur lors du chargement des commentaires:",
+        error.message,
+      );
     }
   };
 
   // handleAddComment gére l'ajout d'un commentaire
   const handleAddComment = async () => {
     if (!credentials) {
-      console.log(
-        "L'utilisateur n'est pas connecté. Redirigez-le vers la page de connexion.",
-      );
+      console.log("L'utilisateur n'est pas connecté");
       return;
     }
 
-    console.log("Credentials:", credentials);
+    console.log("Credentials :", credentials);
 
     try {
       await addWineComment(wineId, newComment, credentials);
       setNewComment("");
       loadComments();
     } catch (error) {
-      console.error("Error adding comment:", error.message);
+      console.error("Erreur lors de l'ajout du commentaire:", error.message);
     }
   };
 
   // handleEditComment gére la modification d'un commentaire
   const handleEditComment = async (commentId) => {
     if (!credentials) {
-      console.log(
-        "L'utilisateur n'est pas connecté. Redirigez-le vers la page de connexion.",
-      );
+      console.log("L'utilisateur n'est pas connecté");
       return;
     }
 
@@ -70,16 +69,17 @@ export default function WineComment({ wineId }) {
       setEditedComment("");
       loadComments();
     } catch (error) {
-      console.error("Error editing comment:", error.message);
+      console.error(
+        "Erreur lors de la modification du commentaire:",
+        error.message,
+      );
     }
   };
 
   // handleDeleteComment gére la suppression d'un commentaire
   const handleDeleteComment = async (commentId) => {
     if (!credentials) {
-      console.log(
-        "L'utilisateur n'est pas connecté. Redirigez-le vers la page de connexion.",
-      );
+      console.log("L'utilisateur n'est pas connecté");
       return;
     }
 
@@ -87,7 +87,10 @@ export default function WineComment({ wineId }) {
       await deleteWineComment(wineId, commentId);
       loadComments();
     } catch (error) {
-      console.error("Error deleting comment:", error.message);
+      console.error(
+        "Erreur lors de la suppression du commentaire:",
+        error.message,
+      );
     }
   };
 

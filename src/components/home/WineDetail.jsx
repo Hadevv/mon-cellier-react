@@ -25,7 +25,7 @@ const WineDetail = ({ wine }) => {
       const count = await getLikesCount(wineId);
       likesStore.setLikesCount(count);
     } catch (error) {
-      console.error("Failed to get likes count", error);
+      console.error("Échec de récupération du nombre de like", error);
     }
   };
 

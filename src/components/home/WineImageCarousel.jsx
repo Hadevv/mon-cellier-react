@@ -20,13 +20,15 @@ const WineImageCarousel = ({ wineId }) => {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // loadImages récupére les images d'un vin
+  // useCallback permet de mémoriser la fonction pour éviter de la recréer à chaque rendu le composant
   const loadImages = useCallback(async () => {
     try {
       setLoading(true);
       const fetchedImages = await getWinePictures(wineId, credentials);
       setImages(fetchedImages);
     } catch (error) {
-      console.error("Error loading images:", error.message);
+      console.error("Erreur lors du chargement des images :", error.message);
     } finally {
       setLoading(false);
     }
@@ -45,7 +47,10 @@ const WineImageCarousel = ({ wineId }) => {
         prevImages.filter((image) => image.id !== imageId),
       );
     } catch (error) {
-      console.error(`Error deleting image ${imageId}:`, error.message);
+      console.error(
+        `Erreur lors de la suppression de l'image ${imageId}:`,
+        error.message,
+      );
     }
   };
 
@@ -54,7 +59,7 @@ const WineImageCarousel = ({ wineId }) => {
       await addWinePicture(wineId, file, credentials);
       loadImages();
     } catch (error) {
-      console.error(`Error uploading image:`, error.message);
+      console.error(`Erreur lors du téléchargement de l'image:`, error.message);
     }
   };
 

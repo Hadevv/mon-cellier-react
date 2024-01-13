@@ -18,7 +18,7 @@ export const getAuthorizationHeader = (credentials) => {
 
 export const handleApiResponse = async (response) => {
   if (!response.ok) {
-    throw new Error("Request failed");
+    throw new Error("Requête échouée");
   }
   const data = await response.json();
   return data;

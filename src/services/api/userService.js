@@ -5,7 +5,7 @@ import {
 
 const API_URL = "https://cruth.phpnet.org/epfc/caviste/public/index.php/";
 
-// getUsers récupére les utilisateurs de l'API
+// getUsers récupère les utilisateurs de l'API
 export const getUsers = async () => {
   const options = {
     method: "GET",
@@ -19,7 +19,7 @@ export const getUsers = async () => {
   try {
     const response = await fetch(API_URL + fetchURL, options);
     if (!response.ok) {
-      throw new Error("Failed to retrieve user data");
+      throw new Error("Échec de la récupération des données utilisateur");
     }
 
     const data = await response.json();
@@ -46,7 +46,8 @@ export const authenticateUser = async (username, password) => {
 
     return data;
   } catch (error) {
-    console.error("Authentication failed", error);
-    throw new Error("Authentication failed. Please try again later.");
+    console.error("Échec de l'authentification", error);
+    throw new Error("Échec de l'authentification");
   }
 };
+

@@ -16,12 +16,14 @@ export default function Navigation() {
   const linkRef = useRef();
   const dashboardLinkRef = useRef();
 
+  // useRef permet de récupérer un élément du DOM
+  // handleLogoClick declenche le click sur le lien de la page d'accueil
   const handleLogoClick = () => {
     linkRef.current.click();
     setDashboardClicked(false);
     setShowDashboardLink(true);
   };
-
+  // handleDashboardClick declenche le click sur le lien du dashboard
   const handleDashboardClick = () => {
     dashboardLinkRef.current.click();
     setDashboardClicked(true);

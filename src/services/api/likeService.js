@@ -29,7 +29,7 @@ export const handleLike = async (wineId, isLiked) => {
   try {
     const response = await fetch(API_URL + fetchURL, options);
     if (!response.ok) {
-      throw new Error("Failed to update like status");
+      throw new Error("Échec de la mise à jour du statut de like");
     }
 
     const data = await response.json();
@@ -44,7 +44,7 @@ export const getLikesCount = async (wineId) => {
   try {
     const response = await fetch(API_URL + `api/wines/${wineId}/likes-count`);
     if (!response.ok) {
-      throw new Error("Failed to get likes count");
+      throw new Error("Échec de récupération du nombre de likes");
     }
 
     const data = await response.json();
@@ -59,9 +59,10 @@ export const getLikesCount = async (wineId) => {
 
       return likesCount;
     } else {
-      throw new Error("Invalid response format");
+      throw new Error("Format de réponse invalide");
     }
   } catch (error) {
     throw new Error(error.message);
   }
 };
+

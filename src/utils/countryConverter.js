@@ -10,8 +10,8 @@ export default function countryConverter(country) {
     Argentina: "ar",
     Hungary: "hu",
   };
-
+  // si le pays est dans la liste, on retourne son abréviation
   const abbreviation = countryList[country];
 
-    return abbreviation || country;
+  return abbreviation || country;
 }

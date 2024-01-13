@@ -11,8 +11,10 @@ import { authenticateUser } from "@/services/api/userService";
 export default function Login() {
   const [error, setError] = useState(null);
   const login = useAuthStore((state) => state.login);
+  // router V6
   const navigate = useNavigate();
 
+  // handleSubmit gère la soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
     const username = e.target.username.value;
@@ -25,7 +27,9 @@ export default function Login() {
         login(username, password);
         navigate("/");
       } else {
-        setError("Authentication failed. Please check your credentials.");
+        setError(
+          "L'authentification a échoué, veuillez vérifier vos identifiants",
+        );
       }
     } catch (error) {
       setError(error.message);
@@ -75,4 +79,3 @@ export default function Login() {
     </GuestLayout>
   );
 }
-

@@ -1,20 +1,23 @@
-import { getAuthorizationHeader } from '@/utils/apiServiceUtils';
+import { getAuthorizationHeader } from "@/utils/apiServiceUtils";
 
-const API_URL = 'https://cruth.phpnet.org/epfc/caviste/public/index.php/api/wines';
-const UPLOADS_URL = 'https://cruth.phpnet.org/epfc/caviste/public/uploads';
+const API_URL =
+  "https://cruth.phpnet.org/epfc/caviste/public/index.php/api/wines";
+const UPLOADS_URL = "https://cruth.phpnet.org/epfc/caviste/public/uploads";
 
 // getWinePictures récupérer les images d'un vin
 export const getWinePictures = async (wineId, credentials) => {
   try {
     const response = await fetch(`${API_URL}/${wineId}/pictures`, {
-      method: 'GET',
+      method: "GET",
       headers: {
         ...getAuthorizationHeader(credentials),
       },
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch pictures for wine ${wineId}`);
+      throw new Error(
+        `Échec de la récupération des images pour le vin ${wineId}`,
+      );
     }
 
     const data = await response.json();
@@ -25,7 +28,10 @@ export const getWinePictures = async (wineId, credentials) => {
 
     return limitedImages;
   } catch (error) {
-    console.error(`Error fetching pictures for wine ${wineId}:`, error.message);
+    console.error(
+      `Erreur lors de la récupération des images pour le vin ${wineId}:`,
+      error.message,
+    );
     throw error;
   }
 };
@@ -34,10 +40,10 @@ export const getWinePictures = async (wineId, credentials) => {
 export const addWinePicture = async (wineId, file, credentials) => {
   try {
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append("image", file);
 
     const response = await fetch(`${API_URL}/${wineId}/pictures`, {
-      method: 'POST',
+      method: "POST",
       body: formData,
       headers: {
         ...getAuthorizationHeader(credentials),
@@ -45,7 +51,7 @@ export const addWinePicture = async (wineId, file, credentials) => {
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to add picture for wine ${wineId}`);
+      throw new Error(`Échec de l'ajout de l'image pour le vin ${wineId}`);
     }
 
     const data = await response.json();
@@ -55,7 +61,10 @@ export const addWinePicture = async (wineId, file, credentials) => {
       imageUrl: `${API_URL}/${data.filename}`,
     };
   } catch (error) {
-    console.error(`Error adding picture for wine ${wineId}:`, error.message);
+    console.error(
+      `Erreur lors de l'ajout de l'image pour le vin ${wineId}:`,
+      error.message,
+    );
     throw error;
   }
 };
@@ -64,14 +73,16 @@ export const addWinePicture = async (wineId, file, credentials) => {
 export const deleteWinePicture = async (wineId, pictureId, credentials) => {
   try {
     const response = await fetch(`${API_URL}/${wineId}/pictures/${pictureId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
         ...getAuthorizationHeader(credentials),
       },
     });
 
     if (!response.ok) {
-      throw new Error(`Failed to delete picture ${pictureId} for wine ${wineId}`);
+      throw new Error(
+        `Échec de la suppression de l'image ${pictureId} pour le vin ${wineId}`,
+      );
     }
 
     const data = await response.json();
@@ -80,7 +91,10 @@ export const deleteWinePicture = async (wineId, pictureId, credentials) => {
       imageUrl: `${API_URL}/${data.filename}`,
     };
   } catch (error) {
-    console.error(`Error deleting picture ${pictureId} for wine ${wineId}:`, error.message);
+    console.error(
+      `Erreur lors de la suppression de l'image ${pictureId} pour le vin ${wineId}:`,
+      error.message,
+    );
     throw error;
   }
 };
